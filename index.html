@@ -344,7 +344,7 @@
             background: white;
             border-radius: 8px;
             width: 90%;
-            max-width: 500px;
+            max-width: 800px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
             animation: modalFadeIn 0.3s;
             max-height: 90vh;
@@ -384,6 +384,93 @@
 
         .modal-body {
             padding: 20px;
+        }
+
+
+        /* 投稿展示区样式 */
+        .submissions-container {
+            margin-top: 30px;
+        }
+
+
+        .submission-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+
+        .submission-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+
+        .submission-tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+
+        .submission-list {
+            display: none;
+        }
+
+
+        .submission-list.active {
+            display: block;
+        }
+
+
+        .submission-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+
+        .submission-item:hover {
+            transform: translateY(-3px);
+        }
+
+
+        .submission-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+
+        .submission-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+
+        .submission-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+
+        .submission-category {
+            display: inline-block;
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
         }
 
 
@@ -489,6 +576,18 @@
 
             .module-cards, .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+
+            .submission-tabs {
+                flex-wrap: wrap;
+            }
+
+
+            .submission-tab {
+                flex: 1;
+                min-width: 100px;
+                text-align: center;
             }
         }
 
@@ -609,6 +708,21 @@
             border-radius: 12px;
             font-size: 0.8rem;
         }
+
+
+        /* 空状态样式 */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -616,7 +730,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <span class="logo-icon"⚔️</span>
+                <span class="logo-icon">⚔️</span>
                 <h1>权澜同人</h1>
             </div>
             <nav>
@@ -676,7 +790,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn">阅读更多</a>
+                            <a href="#" class="btn read-more-btn" data-category="literature">阅读更多</a>
                             <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
                         </div>
                     </div>
@@ -701,7 +815,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn">浏览更多</a>
+                            <a href="#" class="btn read-more-btn" data-category="art">浏览更多</a>
                             <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
                         </div>
                     </div>
@@ -726,7 +840,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn">探索更多</a>
+                            <a href="#" class="btn read-more-btn" data-category="other">探索更多</a>
                             <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
                         </div>
                     </div>
@@ -773,6 +887,40 @@
                         <h3>联系我们</h3>
                         <p>如有任何问题或建议，欢迎通过邮箱与我们联系。</p>
                         <button class="btn" style="margin-top: 15px;" id="contact-btn">联系邮箱</button>
+                    </div>
+                </div>
+
+
+                <!-- 投稿展示区 -->
+                <div class="submissions-container">
+                    <h3 class="section-title">投稿展示</h3>
+
+
+                    <div class="submission-tabs">
+                        <div class="submission-tab active" data-category="all">全部投稿</div>
+                        <div class="submission-tab" data-category="literature">同人文</div>
+                        <div class="submission-tab" data-category="art">同人图</div>
+                        <div class="submission-tab" data-category="other">其他</div>
+                    </div>
+
+
+                    <div class="submission-list active" id="submission-all">
+                        <!-- 全部投稿内容将通过JS动态生成 -->
+                    </div>
+
+
+                    <div class="submission-list" id="submission-literature">
+                        <!-- 同人文投稿内容将通过JS动态生成 -->
+                    </div>
+
+
+                    <div class="submission-list" id="submission-art">
+                        <!-- 同人图投稿内容将通过JS动态生成 -->
+                    </div>
+
+
+                    <div class="submission-list" id="submission-other">
+                        <!-- 其他投稿内容将通过JS动态生成 -->
                     </div>
                 </div>
 
@@ -981,13 +1129,16 @@
         const uploadAvatarBtn = document.getElementById('upload-avatar-btn');
         const closeModalButtons = document.querySelectorAll('.close-modal');
         const likeButtons = document.querySelectorAll('.likes');
+        const readMoreButtons = document.querySelectorAll('.read-more-btn');
+        const submissionTabs = document.querySelectorAll('.submission-tab');
 
 
         // 页面加载时检查登录状态
         document.addEventListener('DOMContentLoaded', function() {
             checkLoginStatus();
             setupPresetAvatars();
-            setupEventListeners(); // 添加事件监听器设置
+            setupEventListeners();
+            renderSubmissions(); // 渲染投稿内容
         });
 
 
@@ -1035,6 +1186,26 @@
             // 点赞功能
             likeButtons.forEach(button => {
                 button.addEventListener('click', handleLike);
+            });
+
+
+            // 阅读更多按钮
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    showSubmissionTab(category);
+                    document.querySelector('.submissions-container').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+
+            // 投稿标签切换
+            submissionTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    showSubmissionTab(category);
+                });
             });
 
 
@@ -1107,6 +1278,103 @@
 
                 avatarOptions.appendChild(avatarOption);
             });
+        }
+
+
+        // 渲染投稿内容
+        function renderSubmissions() {
+            // 清空所有投稿列表
+            document.querySelectorAll('.submission-list').forEach(list => {
+                list.innerHTML = '';
+            });
+
+
+            // 如果没有投稿，显示空状态
+            if (submissions.length === 0) {
+                document.querySelectorAll('.submission-list').forEach(list => {
+                    list.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>暂无投稿，快来发布您的第一份作品吧！</p>
+                        </div>
+                    `;
+                });
+                return;
+            }
+
+
+            // 按分类渲染投稿
+            const categories = ['all', 'literature', 'art', 'other'];
+
+
+            categories.forEach(category => {
+                const container = document.getElementById(`submission-${category}`);
+                let filteredSubmissions = submissions;
+
+
+                if (category !== 'all') {
+                    filteredSubmissions = submissions.filter(sub => sub.category === category);
+                }
+
+
+                if (filteredSubmissions.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>此分类暂无投稿</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+
+                filteredSubmissions.forEach(submission => {
+                    const submissionItem = document.createElement('div');
+                    submissionItem.className = 'submission-item';
+
+
+                    let categoryText = '同人文';
+                    if (submission.category === 'art') categoryText = '同人图';
+                    if (submission.category === 'other') categoryText = '其他';
+
+
+                    submissionItem.innerHTML = `
+                        <div class="submission-title">${submission.title}</div>
+                        <div class="submission-meta">
+                            <span>作者：${submission.author}</span>
+                            <span>${submission.date}</span>
+                        </div>
+                        <div class="submission-content">${submission.content}</div>
+                        <div>
+                            <span class="submission-category">${categoryText}</span>
+                        </div>
+                    `;
+
+
+                    container.appendChild(submissionItem);
+                });
+            });
+        }
+
+
+        // 显示指定分类的投稿
+        function showSubmissionTab(category) {
+            // 更新标签状态
+            submissionTabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-category') === category) {
+                    tab.classList.add('active');
+                }
+            });
+
+
+            // 显示对应分类的内容
+            document.querySelectorAll('.submission-list').forEach(list => {
+                list.classList.remove('active');
+            });
+
+
+            document.getElementById(`submission-${category}`).classList.add('active');
         }
 
 
@@ -1380,6 +1648,10 @@
             saveSubmissions();
 
 
+            // 重新渲染投稿内容
+            renderSubmissions();
+
+
             successModal.style.display = 'flex';
             submissionForm.reset();
         }
@@ -1442,4 +1714,6 @@
     </script>
 </body>
 </html>
+
+
 
