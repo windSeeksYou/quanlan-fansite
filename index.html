@@ -1,0 +1,1445 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>权澜同人 - 王者荣耀孙权x澜同人社区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+
+        :root {
+            --primary-color: #6a5acd;
+            --secondary-color: #4169e1;
+            --accent-color: #9370db;
+            --light-color: #f0f8ff;
+            --dark-color: #2c2c54;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+        }
+
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+        }
+
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+
+        /* 主要内容区 */
+        .hero {
+            background: linear-gradient(rgba(106, 90, 205, 0.7), rgba(65, 105, 225, 0.7)), url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* 模块区域 */
+        .modules {
+            padding: 50px 0;
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 10px auto;
+        }
+
+
+        .module-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .card-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+
+        .card-body {
+            padding: 20px;
+        }
+
+
+        .card-footer {
+            padding: 15px;
+            background: var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+
+
+        /* 功能区域 */
+        .features {
+            padding: 50px 0;
+            background: var(--light-color);
+        }
+
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+
+        /* 表单样式 */
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.2);
+        }
+
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--dark-color);
+        }
+
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+
+        .modal-body {
+            padding: 20px;
+        }
+
+
+        /* 反馈区样式 */
+        .feedback-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 30px;
+            text-align: center;
+            padding: 30px;
+        }
+
+
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+
+
+        .contact-email {
+            display: inline-block;
+            background: var(--light-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+
+        .contact-email:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+
+        /* 页脚 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+
+            nav ul li {
+                margin: 5px;
+            }
+
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+
+            .module-cards, .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* 用户状态指示 */
+        .user-status {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .user-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            min-width: 150px;
+            z-index: 101;
+        }
+
+
+        .user-menu.active {
+            display: block;
+        }
+
+
+        .user-menu-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+
+        .user-menu-item:hover {
+            background: var(--light-color);
+        }
+
+
+        /* 头像选择器样式 */
+        .avatar-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+
+        .avatar-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+
+        .avatar-option:hover, .avatar-option.selected {
+            border-color: var(--primary-color);
+        }
+
+
+        .avatar-upload {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+
+        /* 点赞动画 */
+        @keyframes likeAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+
+        .liked {
+            animation: likeAnimation 0.4s;
+            color: #e74c3c;
+        }
+
+
+        /* 标签样式 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+
+        .tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon"⚔️</span>
+                <h1>权澜同人</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#modules">内容模块</a></li>
+                    <li><a href="#features">功能区域</a></li>
+                    <li><a href="#" id="login-link">登录/注册</a></li>
+                </ul>
+            </nav>
+            <div class="user-status">
+                <div class="user-avatar" id="user-avatar">?</div>
+                <span id="user-name">游客</span>
+                <div class="user-menu" id="user-menu">
+                    <div class="user-menu-item" id="change-username-btn">更改用户名</div>
+                    <div class="user-menu-item" id="change-avatar-btn">更换头像</div>
+                    <div class="user-menu-item" id="logout-btn">退出登录</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- 主内容区 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2>王者荣耀 孙权x澜 同人社区</h2>
+                <p>本站为王者荣耀孙权x澜的同人网站，欢迎太太前来投稿使用</p>
+                <button class="btn" style="margin-top: 20px;" id="join-btn">立即加入社区</button>
+            </div>
+        </section>
+
+
+        <!-- 模块区域 -->
+        <section class="modules" id="modules">
+            <div class="container">
+                <h2 class="section-title">内容模块</h2>
+                <div class="module-cards">
+                    <!-- 同人文模块 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>同人文</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>分享和阅读关于孙权与澜的同人小说、短文、诗歌等文字创作。</p>
+                            <ul>
+                                <li>长篇连载</li>
+                                <li>短篇故事</li>
+                                <li>诗歌散文</li>
+                            </ul>
+                            <div class="tags">
+                                <span class="tag">古风</span>
+                                <span class="tag">权谋</span>
+                                <span class="tag">江湖</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn">阅读更多</a>
+                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
+                        </div>
+                    </div>
+
+
+                    <!-- 同人图模块 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>同人图</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>欣赏和分享关于孙权与澜的同人插画、漫画、表情包等视觉创作。</p>
+                            <ul>
+                                <li>插画作品</li>
+                                <li>漫画连载</li>
+                                <li>表情包</li>
+                            </ul>
+                            <div class="tags">
+                                <span class="tag">Q版</span>
+                                <span class="tag">写实</span>
+                                <span class="tag">水墨</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn">浏览更多</a>
+                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
+                        </div>
+                    </div>
+
+
+                    <!-- 其他模块 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>其他</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>分享关于孙权与澜的其他创作形式，如视频、音乐、手工等。</p>
+                            <ul>
+                                <li>视频剪辑</li>
+                                <li>音乐创作</li>
+                                <li>手工制品</li>
+                            </ul>
+                            <div class="tags">
+                                <span class="tag">视频</span>
+                                <span class="tag">音乐</span>
+                                <span class="tag">手工</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn">探索更多</a>
+                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 功能区域 -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">功能区域</h2>
+                <div class="feature-grid">
+                    <!-- 点赞功能 -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-thumbs-up"></i></div>
+                        <h3>点赞功能</h3>
+                        <p>为您喜欢的作品点赞，支持创作者，让优秀作品获得更多关注。</p>
+                        <button class="btn" style="margin-top: 15px;" id="like-demo-btn">体验点赞</button>
+                    </div>
+
+
+                    <!-- 注册登录 -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-user-lock"></i></div>
+                        <h3>注册登录</h3>
+                        <p>创建个人账户，收藏喜欢的作品，关注创作者，参与社区互动。</p>
+                        <button class="btn" style="margin-top: 15px;" id="auth-btn">注册/登录</button>
+                    </div>
+
+
+                    <!-- 投稿区 -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-edit"></i></div>
+                        <h3>投稿区</h3>
+                        <p>分享您的创作，无论是文字、图片还是其他形式的作品。</p>
+                        <button class="btn" style="margin-top: 15px;" id="submit-btn">立即投稿</button>
+                    </div>
+
+
+                    <!-- 联系我们 -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>联系我们</h3>
+                        <p>如有任何问题或建议，欢迎通过邮箱与我们联系。</p>
+                        <button class="btn" style="margin-top: 15px;" id="contact-btn">联系邮箱</button>
+                    </div>
+                </div>
+
+
+                <!-- 投稿表单 -->
+                <div style="margin-top: 50px;">
+                    <h3 class="section-title">投稿表单</h3>
+                    <div class="form-container">
+                        <form id="submission-form">
+                            <div class="form-group">
+                                <label for="title">作品标题</label>
+                                <input type="text" id="title" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">作品分类</label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">请选择分类</option>
+                                    <option value="literature">同人文</option>
+                                    <option value="art">同人图</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">作品内容/描述</label>
+                                <textarea id="content" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="file">上传文件</label>
+                                <input type="file" id="file" class="form-control">
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%;">提交投稿</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- 反馈区 -->
+                <div style="margin-top: 50px;">
+                    <h3 class="section-title">联系我们</h3>
+                    <div class="feedback-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>意见反馈与建议</h3>
+                        <p>如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+                        <div class="contact-info">
+                            <p>请私信联系邮箱：</p>
+                            <a href="mailto:1227767119@qq.com" class="contact-email">1227767119@qq.com</a>
+                        </div>
+                        <p>我们会在收到邮件后尽快回复您！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- 登录/注册模态框 -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="auth-modal-title">用户登录</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="email">邮箱地址</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="form-group" id="confirm-password-group" style="display: none;">
+                        <label for="confirm-password">确认密码</label>
+                        <input type="password" id="confirm-password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-bottom: 15px;" id="auth-submit-btn">登录</button>
+                    <div style="text-align: center;">
+                        <a href="#" id="switch-auth-mode">没有账号？点击注册</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 更改用户名模态框 -->
+    <div class="modal" id="username-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>更改用户名</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="username-form">
+                    <div class="form-group">
+                        <label for="new-username">新用户名</label>
+                        <input type="text" id="new-username" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">确认更改</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 更换头像模态框 -->
+    <div class="modal" id="avatar-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>更换头像</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-bottom: 15px;">选择预设头像</h4>
+                <div class="avatar-options" id="avatar-options">
+                    <!-- 预设头像将通过JS动态生成 -->
+                </div>
+
+
+                <div class="avatar-upload">
+                    <h4 style="margin-bottom: 15px;">或上传自定义头像</h4>
+                    <input type="file" id="avatar-upload" accept="image/*" style="margin-bottom: 15px;">
+                    <button class="btn" id="upload-avatar-btn">上传头像</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 投稿成功模态框 -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>投稿成功</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; padding: 20px 0;">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color);"></i>
+                </p>
+                <p style="text-align: center;">感谢您的投稿！作品已通过审核并发布到相应分区。</p>
+                <button class="btn" style="width: 100%; margin-top: 20px;" id="close-success-modal">确定</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container footer-content">
+            <p>权澜同人 &copy; 2025 - 王者荣耀孙权x澜同人社区</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-weibo"></i></a>
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#"><i class="fab fa-qq"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>本站为同人创作网站，与官方无关</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // 用户状态管理
+        let currentUser = null;
+        let isLoginMode = true;
+        let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+
+
+        // 预设头像列表
+        const presetAvatars = [
+            '⚔️', '👑', '🐉', '🌊', '🗡️', '🛡️', '🎭', '🌟'
+        ];
+
+
+        // DOM元素
+        const authModal = document.getElementById('auth-modal');
+        const successModal = document.getElementById('success-modal');
+        const usernameModal = document.getElementById('username-modal');
+        const avatarModal = document.getElementById('avatar-modal');
+        const authForm = document.getElementById('auth-form');
+        const usernameForm = document.getElementById('username-form');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const switchAuthMode = document.getElementById('switch-auth-mode');
+        const confirmPasswordGroup = document.getElementById('confirm-password-group');
+        const loginLink = document.getElementById('login-link');
+        const joinBtn = document.getElementById('join-btn');
+        const authBtn = document.getElementById('auth-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const contactBtn = document.getElementById('contact-btn');
+        const likeDemoBtn = document.getElementById('like-demo-btn');
+        const submissionForm = document.getElementById('submission-form');
+        const closeSuccessModal = document.getElementById('close-success-modal');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('user-name');
+        const userMenu = document.getElementById('user-menu');
+        const changeUsernameBtn = document.getElementById('change-username-btn');
+        const changeAvatarBtn = document.getElementById('change-avatar-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const avatarOptions = document.getElementById('avatar-options');
+        const avatarUpload = document.getElementById('avatar-upload');
+        const uploadAvatarBtn = document.getElementById('upload-avatar-btn');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const likeButtons = document.querySelectorAll('.likes');
+
+
+        // 页面加载时检查登录状态
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            setupPresetAvatars();
+            setupEventListeners(); // 添加事件监听器设置
+        });
+
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 登录注册相关
+            loginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                openAuthModal();
+            });
+
+
+            joinBtn.addEventListener('click', openAuthModal);
+            authBtn.addEventListener('click', openAuthModal);
+
+
+            // 表单提交
+            authForm.addEventListener('submit', handleAuthSubmit);
+            usernameForm.addEventListener('submit', handleUsernameChange);
+            submissionForm.addEventListener('submit', handleSubmission);
+
+
+            // 模态框关闭
+            closeSuccessModal.addEventListener('click', closeModals);
+
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', closeModals);
+            });
+
+
+            // 用户菜单
+            userAvatar.addEventListener('click', toggleUserMenu);
+            changeUsernameBtn.addEventListener('click', openUsernameModal);
+            changeAvatarBtn.addEventListener('click', openAvatarModal);
+            logoutBtn.addEventListener('click', handleLogout);
+
+
+            // 其他功能
+            likeDemoBtn.addEventListener('click', handleLikeDemo);
+            contactBtn.addEventListener('click', scrollToContact);
+            uploadAvatarBtn.addEventListener('click', handleAvatarUpload);
+
+
+            // 点赞功能
+            likeButtons.forEach(button => {
+                button.addEventListener('click', handleLike);
+            });
+
+
+            // 切换登录/注册模式
+            switchAuthMode.addEventListener('click', toggleAuthMode);
+
+
+            // 点击模态框外部关闭
+            window.addEventListener('click', function(e) {
+                if (e.target === authModal || e.target === successModal || 
+                    e.target === usernameModal || e.target === avatarModal) {
+                    closeModals();
+                }
+
+
+                // 点击用户菜单外部关闭菜单
+                if (!e.target.closest('.user-status')) {
+                    userMenu.classList.remove('active');
+                }
+            });
+
+
+            // 平滑滚动
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+
+
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+
+        // 设置预设头像
+        function setupPresetAvatars() {
+            avatarOptions.innerHTML = '';
+            presetAvatars.forEach(avatar => {
+                const avatarOption = document.createElement('div');
+                avatarOption.className = 'avatar-option';
+                avatarOption.innerHTML = avatar;
+                avatarOption.style.fontSize = '24px';
+                avatarOption.style.display = 'flex';
+                avatarOption.style.alignItems = 'center';
+                avatarOption.style.justifyContent = 'center';
+
+
+                avatarOption.addEventListener('click', function() {
+                    if (currentUser) {
+                        currentUser.avatar = avatar;
+                        currentUser.avatarType = 'emoji';
+                        updateUserInterface();
+                        saveUserState();
+                        alert('头像已更换！');
+                        avatarModal.style.display = 'none';
+                    }
+                });
+
+
+                avatarOptions.appendChild(avatarOption);
+            });
+        }
+
+
+        // 检查登录状态
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUserInterface();
+            }
+        }
+
+
+        // 更新用户界面
+        function updateUserInterface() {
+            if (currentUser) {
+                if (currentUser.avatarType === 'emoji') {
+                    userAvatar.textContent = currentUser.avatar;
+                    userAvatar.style.backgroundImage = 'none';
+                    userAvatar.style.backgroundColor = currentUser.avatarColor || '#9370db';
+                } else if (currentUser.avatarType === 'image') {
+                    userAvatar.textContent = '';
+                    userAvatar.style.backgroundImage = `url(${currentUser.avatar})`;
+                    userAvatar.style.backgroundColor = 'transparent';
+                }
+
+
+                userName.textContent = currentUser.name;
+                userMenu.style.display = 'none';
+                loginLink.textContent = '已登录';
+                loginLink.style.pointerEvents = 'none';
+            } else {
+                userAvatar.textContent = '?';
+                userAvatar.style.backgroundImage = 'none';
+                userAvatar.style.backgroundColor = '#9370db';
+                userName.textContent = '游客';
+                userMenu.style.display = 'none';
+                loginLink.textContent = '登录/注册';
+                loginLink.style.pointerEvents = 'auto';
+            }
+        }
+
+
+        // 保存用户状态到localStorage
+        function saveUserState() {
+            if (currentUser) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            } else {
+                localStorage.removeItem('currentUser');
+            }
+        }
+
+
+        // 保存投稿到localStorage
+        function saveSubmissions() {
+            localStorage.setItem('submissions', JSON.stringify(submissions));
+        }
+
+
+        // 切换登录/注册模式
+        function toggleAuthMode(e) {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+
+
+            if (isLoginMode) {
+                authModalTitle.textContent = '用户登录';
+                authSubmitBtn.textContent = '登录';
+                switchAuthMode.textContent = '没有账号？点击注册';
+                confirmPasswordGroup.style.display = 'none';
+            } else {
+                authModalTitle.textContent = '用户注册';
+                authSubmitBtn.textContent = '注册';
+                switchAuthMode.textContent = '已有账号？点击登录';
+                confirmPasswordGroup.style.display = 'block';
+            }
+        }
+
+
+        // 打开登录模态框
+        function openAuthModal() {
+            if (currentUser) {
+                alert('您已经登录了！');
+                return;
+            }
+            authModal.style.display = 'flex';
+        }
+
+
+        // 关闭模态框
+        function closeModals() {
+            authModal.style.display = 'none';
+            successModal.style.display = 'none';
+            usernameModal.style.display = 'none';
+            avatarModal.style.display = 'none';
+        }
+
+
+        // 处理登录/注册表单提交
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+
+            if (!isLoginMode) {
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+
+                if (password !== confirmPassword) {
+                    alert('两次输入的密码不一致！');
+                    return;
+                }
+
+
+                if (password.length < 6) {
+                    alert('密码长度至少6位！');
+                    return;
+                }
+
+
+                // 模拟注册成功
+                currentUser = {
+                    email: email,
+                    name: email.split('@')[0],
+                    avatar: '👤',
+                    avatarType: 'emoji',
+                    avatarColor: '#9370db'
+                };
+
+
+                alert('注册成功！已自动登录');
+            } else {
+                // 模拟登录成功
+                currentUser = {
+                    email: email,
+                    name: email.split('@')[0],
+                    avatar: '👤',
+                    avatarType: 'emoji',
+                    avatarColor: '#9370db'
+                };
+
+
+                alert('登录成功！');
+            }
+
+
+            // 更新用户状态
+            updateUserInterface();
+            saveUserState();
+
+
+            closeModals();
+            authForm.reset();
+        }
+
+
+        // 更改用户名
+        function handleUsernameChange(e) {
+            e.preventDefault();
+
+
+            const newUsername = document.getElementById('new-username').value;
+
+
+            if (!newUsername) {
+                alert('请输入新用户名');
+                return;
+            }
+
+
+            currentUser.name = newUsername;
+
+
+            updateUserInterface();
+            saveUserState();
+
+
+            alert('用户名修改成功！');
+            closeModals();
+            usernameForm.reset();
+        }
+
+
+        // 打开用户名修改模态框
+        function openUsernameModal() {
+            usernameModal.style.display = 'flex';
+            userMenu.classList.remove('active');
+        }
+
+
+        // 打开头像修改模态框
+        function openAvatarModal() {
+            avatarModal.style.display = 'flex';
+            userMenu.classList.remove('active');
+        }
+
+
+        // 上传自定义头像
+        function handleAvatarUpload() {
+            const file = avatarUpload.files[0];
+            if (!file) {
+                alert('请选择要上传的图片');
+                return;
+            }
+
+
+            if (!file.type.match('image.*')) {
+                alert('请选择图片文件');
+                return;
+            }
+
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                if (currentUser) {
+                    currentUser.avatar = e.target.result;
+                    currentUser.avatarType = 'image';
+                    updateUserInterface();
+                    saveUserState();
+                    alert('头像上传成功！');
+                    avatarModal.style.display = 'none';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+        // 退出登录
+        function handleLogout() {
+            currentUser = null;
+            saveUserState();
+            updateUserInterface();
+            alert('已退出登录');
+            userMenu.classList.remove('active');
+        }
+
+
+        // 处理投稿提交
+        function handleSubmission(e) {
+            e.preventDefault();
+
+
+            if (!currentUser) {
+                alert('请先登录再投稿！');
+                openAuthModal();
+                return;
+            }
+
+
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const content = document.getElementById('content').value;
+
+
+            // 创建新投稿
+            const newSubmission = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                content: content,
+                author: currentUser.name,
+                date: new Date().toLocaleDateString()
+            };
+
+
+            // 添加到投稿列表
+            submissions.unshift(newSubmission);
+            saveSubmissions();
+
+
+            successModal.style.display = 'flex';
+            submissionForm.reset();
+        }
+
+
+        // 处理点赞
+        function handleLike() {
+            if (!currentUser) {
+                alert('请先登录再点赞！');
+                openAuthModal();
+                return;
+            }
+
+
+            const likeIcon = this.querySelector('i');
+            const likeCount = this.querySelector('.like-count');
+
+
+            likeIcon.classList.remove('far');
+            likeIcon.classList.add('fas', 'liked');
+
+
+            // 增加点赞数
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+
+
+            // 防止重复点击
+            this.style.pointerEvents = 'none';
+            setTimeout(() => {
+                this.style.pointerEvents = 'auto';
+            }, 1000);
+        }
+
+
+        // 点赞演示按钮
+        function handleLikeDemo() {
+            if (!currentUser) {
+                alert('请先登录再点赞！');
+                openAuthModal();
+                return;
+            }
+
+
+            alert('点赞功能演示 - 您已登录，可以正常点赞！');
+        }
+
+
+        // 滚动到联系区域
+        function scrollToContact() {
+            document.querySelector('.feedback-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        // 用户菜单显示/隐藏
+        function toggleUserMenu() {
+            if (currentUser) {
+                userMenu.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
