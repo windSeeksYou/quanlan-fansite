@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -756,6 +755,33 @@
             margin-bottom: 15px;
             color: #666;
         }
+        
+        /* 消息提示样式 */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        
+        .message.success {
+            background-color: var(--success-color);
+        }
+        
+        .message.error {
+            background-color: #e74c3c;
+        }
+        
+        .message.info {
+            background-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -1114,8 +1140,8 @@
         let currentUser = null;
         let isLoginMode = true;
         let submissions = [];
-        let likes = JSON.parse(localStorage.getItem('likes')) || {};
-        let comments = JSON.parse(localStorage.getItem('comments')) || {};
+        let likes = {};
+        let comments = {};
         
         // 预设头像列表
         const presetAvatars = [
@@ -1123,12 +1149,16 @@
         ];
 
         // GitHub API 配置
+        // 注意：在生产环境中，这些敏感信息应该通过环境变量设置
         const GITHUB_API_BASE = 'https://api.github.com';
-        // 这里应该使用环境变量，但在前端代码中我们使用占位符
-        const GITHUB_TOKEN = 'YOUR_GITHUB_TOKEN'; // 在实际部署中应该从环境变量获取
         const GITHUB_REPO_OWNER = 'YOUR_GITHUB_USERNAME'; // 替换为您的GitHub用户名
         const GITHUB_REPO_NAME = 'YOUR_REPO_NAME'; // 替换为您的仓库名
-        const GITHUB_SUBMISSIONS_PATH = 'submissions'; // 存储投稿的文件夹路径
+        const GITHUB_TOKEN = 'YOUR_GITHUB_TOKEN'; // 替换为您的GitHub个人访问令牌
+        
+        // 投稿数据文件路径
+        const SUBMISSIONS_FILE_PATH = 'data/submissions.json';
+        const LIKES_FILE_PATH = 'data/likes.json';
+        const COMMENTS_FILE_PATH = 'data/comments.json';
 
         // DOM元素
         const authModal = document.getElementById('auth-modal');
@@ -1169,7 +1199,7 @@
             checkLoginStatus();
             setupPresetAvatars();
             setupEventListeners();
-            loadSubmissionsFromGitHub(); // 从GitHub加载投稿数据
+            loadAllData(); // 从GitHub加载所有数据
         });
 
         // 设置事件监听器
@@ -1205,7 +1235,7 @@
             likeDemoBtn.addEventListener('click', handleLikeDemo);
             contactBtn.addEventListener('click', scrollToContact);
             uploadAvatarBtn.addEventListener('click', handleAvatarUpload);
-            refreshSubmissionsBtn.addEventListener('click', loadSubmissionsFromGitHub);
+            refreshSubmissionsBtn.addEventListener('click', loadAllData);
             
             // 点赞功能
             likeButtons.forEach(button => {
@@ -1294,64 +1324,132 @@
             });
         }
 
-        // 从GitHub加载投稿数据
-        async function loadSubmissionsFromGitHub() {
+        // 从GitHub加载所有数据
+        async function loadAllData() {
             try {
                 // 显示加载状态
                 document.querySelectorAll('.submission-list').forEach(list => {
                     list.innerHTML = `
                         <div class="loading">
                             <i class="fas fa-spinner"></i>
-                            <p>正在从GitHub加载投稿数据...</p>
+                            <p>正在从GitHub加载数据...</p>
                         </div>
                     `;
                 });
                 
-                // 在实际部署中，这里应该调用一个API端点来获取数据
-                // 由于GitHub API的跨域限制，我们需要使用服务器端代理或Vercel函数
-                // 这里我们模拟一个API调用
+                // 并行加载所有数据
+                const [submissionsData, likesData, commentsData] = await Promise.all([
+                    loadDataFromGitHub(SUBMISSIONS_FILE_PATH),
+                    loadDataFromGitHub(LIKES_FILE_PATH),
+                    loadDataFromGitHub(COMMENTS_FILE_PATH)
+                ]);
                 
-                // 模拟从GitHub获取数据
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // 在实际应用中，这里应该是从GitHub获取的真实数据
-                // 这里我们使用localStorage作为替代方案
-                submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+                // 更新应用状态
+                submissions = submissionsData || [];
+                likes = likesData || {};
+                comments = commentsData || {};
                 
                 // 渲染投稿内容
                 renderSubmissions();
                 
                 // 显示成功消息
-                showMessage('投稿数据已从GitHub同步！', 'success');
+                showMessage('数据已从GitHub同步！', 'success');
             } catch (error) {
-                console.error('从GitHub加载投稿数据失败:', error);
+                console.error('从GitHub加载数据失败:', error);
                 
                 // 显示错误消息
-                showMessage('加载投稿数据失败，请稍后重试', 'error');
+                showMessage('加载数据失败，请稍后重试', 'error');
                 
                 // 回退到本地存储
                 submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+                likes = JSON.parse(localStorage.getItem('likes')) || {};
+                comments = JSON.parse(localStorage.getItem('comments')) || {};
+                
                 renderSubmissions();
             }
         }
 
-        // 保存投稿到GitHub
-        async function saveSubmissionToGitHub(submission) {
+        // 从GitHub加载数据
+        async function loadDataFromGitHub(filePath) {
             try {
-                // 在实际部署中，这里应该调用一个API端点来保存数据
-                // 由于GitHub API的跨域限制，我们需要使用服务器端代理或Vercel函数
+                // 构建GitHub API URL
+                const apiUrl = `${GITHUB_API_BASE}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${filePath}`;
                 
-                // 模拟保存到GitHub
-                await new Promise(resolve => setTimeout(resolve, 500));
+                // 发送请求
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
                 
-                // 在实际应用中，这里应该是保存到GitHub的真实代码
-                // 这里我们使用localStorage作为替代方案
-                submissions.unshift(submission);
-                localStorage.setItem('submissions', JSON.stringify(submissions));
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // 解码Base64内容
+                const content = atob(data.content);
+                
+                // 解析JSON
+                return JSON.parse(content);
+            } catch (error) {
+                console.error(`加载 ${filePath} 失败:`, error);
+                return null;
+            }
+        }
+
+        // 保存数据到GitHub
+        async function saveDataToGitHub(filePath, data) {
+            try {
+                // 构建GitHub API URL
+                const apiUrl = `${GITHUB_API_BASE}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${filePath}`;
+                
+                // 首先获取文件的SHA（如果存在）
+                let sha = null;
+                try {
+                    const getResponse = await fetch(apiUrl, {
+                        headers: {
+                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+                    
+                    if (getResponse.ok) {
+                        const fileData = await getResponse.json();
+                        sha = fileData.sha;
+                    }
+                } catch (error) {
+                    // 文件可能不存在，这是正常的
+                }
+                
+                // 准备请求体
+                const content = btoa(JSON.stringify(data, null, 2));
+                const requestBody = {
+                    message: `Update ${filePath}`,
+                    content: content,
+                    sha: sha
+                };
+                
+                // 发送PUT请求
+                const response = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.status}`);
+                }
                 
                 return true;
             } catch (error) {
-                console.error('保存投稿到GitHub失败:', error);
+                console.error(`保存 ${filePath} 失败:`, error);
                 return false;
             }
         }
@@ -1360,28 +1458,6 @@
         function showMessage(message, type = 'info') {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                border-radius: 8px;
-                color: white;
-                font-weight: bold;
-                z-index: 10000;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                transition: opacity 0.3s;
-                opacity: 0;
-            `;
-            
-            if (type === 'success') {
-                messageDiv.style.backgroundColor = 'var(--success-color)';
-            } else if (type === 'error') {
-                messageDiv.style.backgroundColor = '#e74c3c';
-            } else {
-                messageDiv.style.backgroundColor = 'var(--primary-color)';
-            }
-            
             messageDiv.textContent = message;
             document.body.appendChild(messageDiv);
             
@@ -1522,7 +1598,7 @@
         }
 
         // 处理投稿点赞
-        function handleSubmissionLike(e) {
+        async function handleSubmissionLike(e) {
             if (!currentUser) {
                 alert('请先登录再点赞！');
                 openAuthModal();
@@ -1559,8 +1635,15 @@
             // 更新点赞数
             likeCount.textContent = likes[submissionId].length;
             
-            // 保存点赞状态
-            localStorage.setItem('likes', JSON.stringify(likes));
+            // 保存点赞状态到GitHub
+            const success = await saveDataToGitHub(LIKES_FILE_PATH, likes);
+            
+            if (success) {
+                // 同时更新本地存储作为备份
+                localStorage.setItem('likes', JSON.stringify(likes));
+            } else {
+                showMessage('点赞操作失败，请稍后重试', 'error');
+            }
         }
 
         // 切换评论显示/隐藏
@@ -1571,7 +1654,7 @@
         }
 
         // 处理评论提交
-        function handleCommentSubmit(e) {
+        async function handleCommentSubmit(e) {
             if (!currentUser) {
                 alert('请先登录再评论！');
                 openAuthModal();
@@ -1599,34 +1682,48 @@
                 date: new Date().toLocaleString()
             });
             
-            // 保存评论
-            localStorage.setItem('comments', JSON.stringify(comments));
+            // 保存评论到GitHub
+            const success = await saveDataToGitHub(COMMENTS_FILE_PATH, comments);
             
-            // 清空输入框
-            commentInput.value = '';
-            
-            // 重新渲染投稿内容以更新评论
-            renderSubmissions();
-            
-            // 保持评论区域展开
-            document.getElementById(`comments-${submissionId}`).classList.add('active');
+            if (success) {
+                // 同时更新本地存储作为备份
+                localStorage.setItem('comments', JSON.stringify(comments));
+                
+                // 清空输入框
+                commentInput.value = '';
+                
+                // 重新渲染投稿内容以更新评论
+                renderSubmissions();
+                
+                // 保持评论区域展开
+                document.getElementById(`comments-${submissionId}`).classList.add('active');
+            } else {
+                showMessage('评论提交失败，请稍后重试', 'error');
+            }
         }
 
         // 处理删除投稿
-        function handleDeleteSubmission(e) {
+        async function handleDeleteSubmission(e) {
             const submissionId = parseInt(e.currentTarget.getAttribute('data-id'));
             
             if (confirm('确定要删除这篇投稿吗？此操作不可撤销。')) {
                 // 从投稿数组中移除
                 submissions = submissions.filter(sub => sub.id !== submissionId);
                 
-                // 保存更新后的投稿
-                localStorage.setItem('submissions', JSON.stringify(submissions));
+                // 保存更新后的投稿到GitHub
+                const success = await saveDataToGitHub(SUBMISSIONS_FILE_PATH, submissions);
                 
-                // 重新渲染投稿内容
-                renderSubmissions();
-                
-                alert('投稿已成功删除！');
+                if (success) {
+                    // 同时更新本地存储作为备份
+                    localStorage.setItem('submissions', JSON.stringify(submissions));
+                    
+                    // 重新渲染投稿内容
+                    renderSubmissions();
+                    
+                    showMessage('投稿已成功删除！', 'success');
+                } else {
+                    showMessage('删除投稿失败，请稍后重试', 'error');
+                }
             }
         }
 
@@ -1881,10 +1978,16 @@
             submitButton.disabled = true;
             
             try {
+                // 添加到投稿数组
+                submissions.unshift(newSubmission);
+                
                 // 保存投稿到GitHub
-                const success = await saveSubmissionToGitHub(newSubmission);
+                const success = await saveDataToGitHub(SUBMISSIONS_FILE_PATH, submissions);
                 
                 if (success) {
+                    // 同时更新本地存储作为备份
+                    localStorage.setItem('submissions', JSON.stringify(submissions));
+                    
                     // 重新渲染投稿内容
                     renderSubmissions();
                     
