@@ -435,145 +435,11 @@
     </section>
 
     <!-- 作品展示区域 -->
-    <section class="works-section" id="works">
-        <div class="container">
-            <h2 class="section-title">同人作品展示</h2>
-            <div class="works-grid">
-                <!-- 示例作品1 -->
-                <div class="work-card">
-                    <div class="work-image">插图</div>
-                    <div class="work-content">
-                        <h3 class="work-title">江东夜宴</h3>
-                        <p class="work-author">作者：江东文人</p>
-                        <p class="work-excerpt">孙权设宴招待各方来使，澜作为魏国刺客潜入宴会，两人在月光下第一次相遇...</p>
-                    </div>
-                </div>
-                
-                <!-- 示例作品2 -->
-                <div class="work-card">
-                    <div class="work-image">小说</div>
-                    <div class="work-content">
-                        <h3 class="work-title">暗流涌动</h3>
-                        <p class="work-author">作者：墨染江南</p>
-                        <p class="work-excerpt">澜接到刺杀孙权的任务，却在执行过程中发现了孙权不为人知的一面...</p>
-                    </div>
-                </div>
-                
-                <!-- 示例作品3 -->
-                <div class="work-card">
-                    <div class="work-image">漫画</div>
-                    <div class="work-content">
-                        <h3 class="work-title">剑与权谋</h3>
-                        <p class="work-author">作者：绘梦者</p>
-                        <p class="work-excerpt">两人在战场上的对决，却因一次意外事件而改变了彼此的关系...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="works-grid">
+    <!--由JavaScript动态渲染已通过的投稿-->
+</div>
     </section>
-// 投稿提交（创建 Issues）
-function submitToIssues(title, author, content, contact) {
-  // 1. 构造请求参数
-  const repo = "windSeeksYou/quanlan-fansite";
-  const token = "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"; 
-  const issueData = {
-    title: title, // 投稿标题（对应表单的“作品标题”）
-    body: `作者：${author}\n联系方式：${contact || '无'}\n作品内容：\n${content}`, // 投稿详情
-    labels: ["审核中"] // 默认添加“审核中”标签
-  };
 
-  // 2. 调用 API 创建 Issues
-  fetch(`https://api.github.com/repos/windSeeksYou/quanlan-fansite/issues`, {
-    method: "POST", // 写操作必须用 POST
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `token ${token}`, // 带 Token 验证
-      "Accept": "application/vnd.github.v3+json"
-    },
-    body: JSON.stringify(issueData) // 转换为 JSON 格式
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.id) {
-      alert("投稿成功，等待审核~");
-    } else {
-      alert("投稿失败：" + data.message);
-    }
-  })
-  .catch(err => console.error("错误：", err));
-}
-
-// 绑定表单提交事件（调用上面的函数）
-document.getElementById("submissionForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const content = document.getElementById("content").value;
-  const contact = document.getElementById("contact").value;
-  submitToIssues(title, author, content, contact); // 触发投稿
-});
-  // 修改 Issues 标签（审核通过时调用）
-function updateIssueLabel(issueId, newLabels) {
-  const repo = "windSeeksYou/quanlan-fansite";
-  const token = "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";
-
-  fetch(`https://api.github.com/repos/windSeeksYou/quanlan-fansite/issues/${issueId}/labels`, {
-    method: "PUT", // 修改标签用 PUT
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `token ${token}`,
-      "Accept": "application/vnd.github.v3+json"
-    },
-    body: JSON.stringify(newLabels) // 新标签数组（如：["已通过"]）
-  })
-  .then(res => res.json())
-  .then(data => console.log("标签修改成功：", data))
-  .catch(err => console.error("修改失败：", err));
-}
-
-// 示例：将 ID 为 123 的 Issues 标签改为“已通过”
-// updateIssueLabel(123, ["已通过"]); 
-    // 拉取“已通过”标签的投稿
-function fetchApprovedWorks() {
-  const repo = "windSeeksYou/quanlan-fansite"; // 替换为实际仓库
-  const worksGrid = document.querySelector(".works-grid"); // 作品展示区容器
-
-  // 1. 调用 API 拉取标签为“已通过”的 Issues
-  fetch(`https://api.github.com/repos/windSeeksYou/quanlan-fansite/issues?labels=已通过`, {
-    headers: {
-      "Accept": "application/vnd.github.v3+json"
-    }
-  })
-  .then(res => res.json())
-  .then(issues => {
-    worksGrid.innerHTML = ""; // 清空原有内容
-
-    // 2. 遍历 Issues，动态生成作品卡片
-    issues.forEach(issue => {
-      // 解析 Issues 内容（和创建时的格式对应）
-      const [authorLine, contactLine, ...contentLines] = issue.body.split("\n");
-      const author = authorLine.replace("作者：", "").trim();
-      const content = contentLines.join("\n").replace("作品内容：", "").trim();
-
-      // 3. 创建作品卡片并添加到页面
-      const workCard = document.createElement("div");
-      workCard.className = "work-card";
-      workCard.innerHTML = `
-        <div class="work-image">用户投稿</div>
-        <div class="work-content">
-          <h3 class="work-title">${issue.title}</h3>
-          <p class="work-author">作者：${author}</p >
-          <p class="work-excerpt">${content}</p >
-        </div>
-      `;
-      worksGrid.appendChild(workCard);
-    });
-  })
-  .catch(err => console.error("拉取失败：", err));
-}
-
-// 页面加载时自动拉取投稿
-window.addEventListener("load", fetchApprovedWorks);
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -588,6 +454,34 @@ window.addEventListener("load", fetchApprovedWorks);
     </footer>
 
     <script>
+        // 投稿提交（创建 Issues）
+  .then(issues => {
+    worksGrid.innerHTML = ""; // 清空原有内容
+    // 2. 遍历 Issues，动态生成作品卡片
+    issues.forEach(issue => {
+      // 解析 Issues 内容（和创建时的格式对应）
+      const [authorLine, contactLine, ...contentLines] = issue.body.split("\n");
+      const author = authorLine.replace("作者：", "").trim();
+      const content = contentLines.join("\n").replace("作品内容：", "").trim();
+      // 3. 创建作品卡片并添加到页面
+      const workCard = document.createElement("div");
+      workCard.className = "work-card";
+      workCard.innerHTML = `        
+<div class="work-image">用户投稿</div>        
+<div class="work-content">          
+<h3 class="work-title">${issue.title}</h3>          
+<p class="work-author">作者：${author}</p >          
+<p class="work-excerpt">${content}</p >        
+</div>
+      `;
+      worksGrid.appendChild(workCard);
+    });
+  })
+  .catch(err => console.error("拉取失败：", err));
+}
+// 页面加载时自动拉取投稿
+window.addEventListener("load", fetchApprovedWorks);
+        
         // 表单提交处理
         document.getElementById('submissionForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -671,5 +565,6 @@ window.addEventListener("load", fetchApprovedWorks);
     </script>
 </body>
 </html>
+
 
 
