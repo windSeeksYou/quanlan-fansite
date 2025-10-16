@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>王者荣耀 | 孙权x澜同人站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,10 +13,20 @@
             font-family: 'Microsoft YaHei', sans-serif;
         }
         
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #ffd700;
+            --dark: #0a0e29;
+            --light: #e0e0e0;
+            --gray: #b0b0b0;
+        }
+        
         body {
-            background-color: #0a0e29;
-            color: #e0e0e0;
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -26,7 +37,7 @@
         
         /* 导航栏样式 */
         header {
-            background: linear-gradient(to right, #1a237e, #283593);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             padding: 1rem 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             position: sticky;
@@ -47,7 +58,7 @@
         
         .logo h1 {
             font-size: 1.8rem;
-            background: linear-gradient(45deg, #ffd700, #ffab00);
+            background: linear-gradient(45deg, var(--accent), #ffab00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -58,11 +69,11 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #1a237e, #3949ab);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffd700;
+            color: var(--accent);
             font-weight: bold;
             font-size: 1.2rem;
         }
@@ -77,7 +88,7 @@
         }
         
         .nav-links a {
-            color: #e0e0e0;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -86,7 +97,7 @@
         }
         
         .nav-links a:hover {
-            color: #ffd700;
+            color: var(--accent);
             background-color: rgba(255, 215, 0, 0.1);
         }
         
@@ -114,7 +125,7 @@
         .hero-text h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffd700, #ffab00);
+            background: linear-gradient(45deg, var(--accent), #ffab00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -123,7 +134,7 @@
         .hero-text p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: #b0b0b0;
+            color: var(--gray);
         }
         
         .hero-images {
@@ -148,7 +159,7 @@
         .character.sunquan {
             left: 20%;
             top: 20px;
-            background: linear-gradient(45deg, #1a237e, #3949ab);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             transform: rotate(-5deg);
             z-index: 2;
         }
@@ -187,8 +198,8 @@
         }
         
         .sunquan .character-name {
-            background: linear-gradient(to right, #1a237e, #3949ab);
-            color: #ffd700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--accent);
         }
         
         .lan .character-name {
@@ -196,68 +207,55 @@
             color: #4db6ac;
         }
         
-        /* 投稿区域样式 */
-        .submission-section {
+        /* 联系区域样式 */
+        .contact-section {
             padding: 4rem 0;
             background-color: #0f1438;
+            text-align: center;
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
             font-size: 2rem;
-            color: #ffd700;
+            color: var(--accent);
         }
         
-        .submission-form {
-            max-width: 800px;
+        .contact-info {
+            max-width: 600px;
             margin: 0 auto;
             background: rgba(30, 35, 70, 0.7);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
-        .form-group {
+        .contact-info p {
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
+            color: var(--light);
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #b0b0b0;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid #3949ab;
-            border-radius: 4px;
-            color: #e0e0e0;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 0.75rem;
-            background: linear-gradient(45deg, #1a237e, #3949ab);
+        .email-link {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .submit-btn:hover {
-            background: linear-gradient(45deg, #3949ab, #1a237e);
+        .email-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .email-link i {
+            margin-right: 10px;
         }
         
         /* 作品展示区域 */
@@ -277,6 +275,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .work-card:hover {
@@ -300,18 +299,116 @@
         .work-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: #ffd700;
+            color: var(--accent);
         }
         
         .work-author {
-            color: #b0b0b0;
+            color: var(--gray);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
         
         .work-excerpt {
-            color: #e0e0e0;
+            color: var(--light);
             font-size: 0.95rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .read-more {
+            margin-top: 10px;
+            color: var(--accent);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .work-card:hover .read-more i {
+            transform: translateX(5px);
+        }
+        
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: rgba(30, 35, 70, 0.95);
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .modal-author {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .modal-text {
+            line-height: 1.8;
+            color: var(--light);
+        }
+        
+        .modal-text p {
+            margin-bottom: 1rem;
         }
         
         /* 页脚样式 */
@@ -319,7 +416,7 @@
             background: #050920;
             padding: 2rem 0;
             text-align: center;
-            color: #b0b0b0;
+            color: var(--gray);
         }
         
         .footer-links {
@@ -334,13 +431,13 @@
         }
         
         .footer-links a {
-            color: #b0b0b0;
+            color: var(--gray);
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            color: #ffd700;
+            color: var(--accent);
         }
         
         /* 响应式设计 */
@@ -361,6 +458,18 @@
                 width: 150px;
                 height: 280px;
             }
+            
+            .contact-info {
+                padding: 1.5rem;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -377,7 +486,7 @@
                     <li><a href="#home">首页</a></li>
                     <li><a href="#about">人物介绍</a></li>
                     <li><a href="#works">同人作品</a></li>
-                    <li><a href="#submission">投稿</a></li>
+                    <li><a href="#contact">联系我们</a></li>
                 </ul>
             </nav>
         </div>
@@ -406,38 +515,87 @@
         </div>
     </section>
 
-    <!-- 投稿区域 -->
-    <section class="submission-section" id="submission">
+    <!-- 联系区域 -->
+    <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title">投稿你的同人作品</h2>
-            <div class="submission-form">
-                <form id="submissionForm">
-                    <div class="form-group">
-                        <label for="title">作品标题</label>
-                        <input type="text" id="title" class="form-control" placeholder="请输入作品标题" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">作者名称</label>
-                        <input type="text" id="author" class="form-control" placeholder="请输入您的名称" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">作品内容</label>
-                        <textarea id="content" class="form-control" placeholder="请在此输入您的同人作品内容..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact">联系方式 (可选)</label>
-                        <input type="text" id="contact" class="form-control" placeholder="邮箱或社交账号">
-                    </div>
-                    <button type="submit" class="submit-btn">提交作品</button>
-                </form>
+            <h2 class="section-title">投稿与合作</h2>
+            <div class="contact-info">
+                <p>如果您有优秀的孙权x澜同人作品想要分享，或者希望与我们合作，欢迎通过以下方式联系我们：</p>
+                <a href="mailto:1227767119@qq.com" class="email-link">
+                    <i class="fas fa-envelope"></i>1227767119@qq.com
+                </a>
+                <p style="margin-top: 1.5rem;">我们期待收到您的精彩作品！</p>
             </div>
         </div>
     </section>
 
     <!-- 作品展示区域 -->
-<div class="works-grid">
-    <!--由JavaScript动态渲染已通过的投稿-->
-</div>
+    <section class="works-section" id="works">
+        <div class="container">
+            <h2 class="section-title">同人作品展示</h2>
+            <div class="works-grid">
+                <!-- 作品1 -->
+                <div class="work-card" data-id="1">
+                    <div class="work-image">短篇</div>
+                    <div class="work-content">
+                        <h3 class="work-title">替嫁新娘上</h3>
+                        <p class="work-author">作者：荔枝冰奶酪羹</p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                
+                <!-- 作品2 -->
+                <div class="work-card" data-id="2">
+                    <div class="work-image">短篇</div>
+                    <div class="work-content">
+                        <h3 class="work-title">种田糙汉</h3>
+                        <p class="work-author">作者：荔枝冰酪羹</p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                
+                <!-- 作品3 -->
+                <div class="work-card" data-id="3">
+                    <div class="work-image">短篇</div>
+                    <div class="work-content">
+                        <h3 class="work-title">权的观察日记2</h3>
+                        <p class="work-author">作者：萌念竹</p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- 作品4 -->
+                <div class="work-card" data-id="4">
+                    <div class="work-image">暂无</div>
+                    <div class="work-content">
+                        <h3 class="work-title">xxxx</h3>
+                        <p class="work-author">作者：xxx</p>
+                        <p class="work-excerpt"></p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- 作品5 -->
+                <div class="work-card" data-id="5">
+                    <div class="work-image">短篇</div>
+                    <div class="work-content">
+                        <h3 class="work-title">xxx</h3>
+                        <p class="work-author">作者：xxxx</p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- 作品6 -->
+                <div class="work-card" data-id="6">
+                    <div class="work-image">xx</div>
+                    <div class="work-content">
+                        <h3 class="work-title">vvvv</h3>
+                        <p class="work-author">作者：xxx</p>
+                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- 页脚 -->
@@ -447,223 +605,97 @@
                 <li><a href="#">关于我们</a></li>
                 <li><a href="#">投稿指南</a></li>
                 <li><a href="#">版权声明</a></li>
-                <li><a href="#">联系我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
             </ul>
             <p>© 2025 王者荣耀孙权x澜同人站 | 本网站为粉丝创作，与官方无关</p>
         </div>
     </footer>
 
-    <script>
-        // 投稿提交（创建 Issues）
-function submitToIssues(title, author, content, contact) {
-  // 1. 构造请求参数
-  const repo = "windSeeksYou/quanlan-fansite"; // 替换为实际仓库
-  const token = "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"; // 替换为生成的 Token
-  const issueData = {
-    title: title, // 投稿标题（对应表单的“作品标题”）
-    body: `作者：${author}\n联系方式：${contact || '无'}\n作品内容：\n${content}`, // 投稿详情
-    labels: ["审核中"] // 默认添加“审核中”标签
-  };
-
-  // 2. 调用 API 创建 Issues
-  fetch(`https://api.github.com/repos/${repo}/issues`, {
-    method: "POST", // 写操作必须用 POST
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `token ${token}`, // 带 Token 验证
-      "Accept": "application/vnd.github.v3+json"
-    },
-    body: JSON.stringify(issueData) // 转换为 JSON 格式
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.id) {
-      alert("投稿成功，等待审核~");
-    } else {
-      alert("投稿失败：" + data.message);
-    }
-  })
-  .catch(err => console.error("错误：", err));
-}
-
-// 绑定表单提交事件（调用上面的函数）
-document.getElementById("submissionForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const content = document.getElementById("content").value;
-  const contact = document.getElementById("contact").value;
-  submitToIssues(title, author, content, contact); // 触发投稿
-});
-  .then(issues => {
-    worksGrid.innerHTML = "";
-      // 拉取“已通过”标签的投稿
-function fetchApprovedWorks() {
-  const repo = "WindSeeksYou/quanlan-fansite"; // 替换为实际仓库
-  const worksGrid = document.querySelector(".works-grid"); // 作品展示区容器
-
-  // 1. 调用 API 拉取标签为“已通过”的 Issues
-  fetch(`https://api.github.com/repos/${repo}/issues?labels=已通过`, {
-    headers: {
-      "Accept": "application/vnd.github.v3+json"
-    }
-  })
-  .then(res => res.json())
-  .then(issues => {
-    worksGrid.innerHTML = ""; // 修改 Issues 标签（审核通过时调用）
-function updateIssueLabel(issueId, newLabels) {
-  const repo = "windSeksYou/quanlan-fansite";
-  const token = "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";
-
-  fetch(`https://api.github.com/repos/${repo}/issues/${issueId}/labels`, {
-    method: "PUT", // 修改标签用 PUT
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `token ${token}`,
-      "Accept": "application/vnd.github.v3+json"
-    },
-    body: JSON.stringify(newLabels) // 新标签数组（如：["已通过"]）
-  })
-  .then(res => res.json())
-  .then(data => console.log("标签修改成功：", data))
-  .catch(err => console.error("修改失败：", err));
-}
-
-// 示例：将 ID 为 123 的 Issues 标签改为“已通过”
-// updateIssueLabel(123, ["已通过"]);
-      // 修改 Issues 标签（审核通过时调用）
-function updateIssueLabel(issueId, newLabels) {
-  const repo = "windSeeksYou/quanlan-fansite";
-  const token = "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";
-
-  fetch(`https://api.github.com/repos/${repo}/issues/${issueId}/labels`, {
-    method: "PUT", // 修改标签用 PUT
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `token ${token}`,
-      "Accept": "application/vnd.github.v3+json"
-    },
-    body: JSON.stringify(newLabels) // 新标签数组（如：["已通过"]）
-  })
-  .then(res => res.json())
-  .then(data => console.log("标签修改成功：", data))
-  .catch(err => console.error("修改失败：", err));
-}
-
-// 示例：将 ID 为 123 的 Issues 标签改为“已通过”
-// updateIssueLabel(123, ["已通过"]);// 清空原有内容
-
-    // 2. 遍历 Issues，动态生成作品卡片
-    issues.forEach(issue => {
-      // 解析 Issues 内容（和创建时的格式对应）
-      const [authorLine, contactLine, ...contentLines] = issue.body.split("\n");
-      const author = authorLine.replace("作者：", "").trim();
-      const content = contentLines.join("\n").replace("作品内容：", "").trim();
-
-      // 3. 创建作品卡片并添加到页面
-      const workCard = document.createElement("div");
-      workCard.className = "work-card";
-      workCard.innerHTML = `
-        <div class="work-image">用户投稿</div>
-        <div class="work-content">
-          <h3 class="work-title">${issue.title}</h3>
-          <p class="work-author">作者：${author}</p >
-          <p class="work-excerpt">${content}</p >
+    <!-- 模态框 -->
+    <div class="modal" id="workModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">作品标题</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-author" id="modalAuthor">作者：</p>
+                <div class="modal-text" id="modalText">
+                    <!-- 作品全文内容将通过JavaScript填充 -->
+                </div>
+            </div>
         </div>
-      `;
-      worksGrid.appendChild(workCard);
-    });
-  })
-  .catch(err => console.error("拉取失败：", err));
-}
+    </div>
 
-// 页面加载时自动拉取投稿
-window.addEventListener("load", fetchApprovedWorks);
-      // 清空原有内容
-    // 2. 遍历 Issues，动态生成作品卡片
-    issues.forEach(issue => {
-      // 解析 Issues 内容（和创建时的格式对应）
-      const [authorLine, contactLine, ...contentLines] = issue.body.split("\n");
-      const author = authorLine.replace("作者：", "").trim();
-      const content = contentLines.join("\n").replace("作品内容：", "").trim();
-      // 3. 创建作品卡片并添加到页面
-      const workCard = document.createElement("div");
-      workCard.className = "work-card";
-      workCard.innerHTML = `        
-<div class="work-image">用户投稿</div>        
-<div class="work-content">          
-<h3 class="work-title">${issue.title}</h3>          
-<p class="work-author">作者：${author}</p >          
-<p class="work-excerpt">${content}</p >        
-</div>
-      `;
-      worksGrid.appendChild(workCard);
-    });
-  })
-  .catch(err => console.error("拉取失败：", err));
-}
-// 页面加载时自动拉取投稿
-window.addEventListener("load", fetchApprovedWorks);
-        
-        // 表单提交处理
-        document.getElementById('submissionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    <script>
+        // 作品数据
+        const worksData = {
+            1: {
+                title: "替嫁新娘",
+                author: "荔枝冰酪羹",
+                type: "短篇",
+                content: `
+                    <p>清晨的孙府一直以来都是最闹腾的，今天更胜以往。</p>
+                    <p>孙家大小姐孙尚香，这位不能按常理推断的世家小姐，正抱着府中祖宗辈石榴树的枝条哭号，“我不嫁，我心里已经有刘备了，非他不可。那什劳子的澜将军，我见都没见过，不嫁不嫁不嫁。”孙家长子孙策想靠近又不敢靠近，一边哄树上的妹妹，一边暗示旁边的作壁上观的弟弟帮忙，“好好好，不嫁就不嫁。你先下来好不好，要是摔着了可不值当。”</p>
+                    <p>二公子孙权抱胸而立，静静地看着孙尚香扒在树上哭嚎半天也不见眼泪，冷冷道：“你今天要是真的能从树上跳下来死这，我就带着你的尸体去和皇上退婚。</p>
+                    <p>二人眼神对峙半晌，自觉认输的孙大小姐悻悻然从树上翻身而下，轻盈落地</p>
+                <p>看的孙大少爷头上的筋一跳一跳，恨不得逮着人揍一顿，又对着自家小妹委委屈屈的脸心软了。尚香年纪轻，又有心上人，一时接受不了被赐婚给未见过的男子也是可以理解的。孙策忍了又忍，最后把手搭在小妹肩上微微发力，不让人溜走，“尚香，不和兄长解释一下你和刘家公子的事吗？”</p>
+                    <p>只听孙大小姐声音洪亮，字正腔圆的说：“我和刘备两情相悦，这辈子非他不嫁了。”</p>
+                    <p>一句话成功让孙权火气上涌，“什么时候的事？姓刘的小子哪点值得你这么想嫁。”说到“姓刘的小子”时，手上捏着的折扇发出细微的声响。</p>
+                    <p>这点动静落到孙尚香耳中，这位大小姐顿时一颤，完了完了，刘备不会被二哥一巴掌扇死吧，我还没嫁过去就要守寡了，不对应该是冥婚。孙大小姐瞬息间在脑海中勾勒完一套热销话本，还没来得及细化就被匆匆跑来的下人打断了。</p>
+                    <p>小厮穿过院门，面上是略显骄傲的喜悦，“大公子，二公子，三小姐，将军府送来了聘礼，64抬，在院子里放着呢。”孙尚香立马泪眼婆娑的看向孙策，孙策的视线瞥向孙权，兄妹二人达成了一些不太美妙的共识。只见孙三小姐一个滑跪抱住孙二公子的小腿，哭号：“二哥，我真的不嫁。你要真让我嫁，我就...”女孩从头上取下一只金簪，作势对着自己的脖颈，“我就死在这。”孙权看着妹妹脸上挂着的泪痕（掐出来的），最终还是心软了。</p>
+                    <p>诺大的孙府，只有三位年轻的嫡系。其中大公子已在上个月完婚，迎娶桥家的大小姐大乔，是一对令人艳羡神仙眷侣，二公子尚未订下婚约，三小姐刚被指婚。这会算来算去也只有孙权这一个单身的青年才俊。经过激烈争斗，孙二公子被哥哥和妹妹联手绑上了花轿。</p>
+                    <p>待孙权反应过来时自己已经坐在驶向将军府的队伍中了，他悄悄掀开轿子的窗帘一角，环顾四周，看着迎亲队伍，有些无力的跌回座椅上。“这出的什么馊主意，小妹胡闹就算了，怎么大哥大嫂还有义兄也跟着胡闹啊。”看着身上火红的嫁衣，孙二公子长叹一口气，陷入沉思。</p>
+                    <p>将军府此时也鸡飞狗跳的。由于澜将军常年在外征战，府中事务大多由小姐蔡文姬打理，而两人都较为年幼，许多事都要靠从二人幼时便照顾二人起居的老管家帮衬。老管家年事已高，总担心事情没做好，有纰漏，一件事要反反复复检查三四遍，老人家精力又不够充沛，更多时候只能让蔡文姬自己手忙脚乱的处理，好在澜没什么对于仪式的观念，对蔡文姬的奇思妙想照单全收，在两小只的努力下府中成功被打点成喜气洋洋的样子。</p>
+                `<p>看着装点上囍字的婚房，澜这位少年将军后知后觉感到有几分羞涩，要迎接一位女主人进将军府的念头终于在少年的心上有了实感，连被身边人打趣一生都与情爱无缘的澜也忍不住在心里勾勒起未来妻子的形象。要是她如京中传言一般是位不输男子的豪杰，或许他们可以一同切磋，将军府的院子够大，她在这里舞刀弄剑也不会束手束脚。就是院子里没有什么名贵的花草，希望她不会嫌弃这里的简陋。少年没经历过多少刻骨铭心的挫折，战场上也没有感怀悲秋的时间，在等待新娘子到来前却让少年将军陷入难得的深思。</p>
+            },
+            2: {
+                title: "暗流涌动",
+                author: "墨染江南",
+                type: "小说",
+                content: `
+                    <p>澜接到刺杀孙权的任务，却在执行过程中发现了孙权不为人知的一面。</p>
+                    <p>深夜，澜潜入孙权寝宫，却意外发现孙权并未安寝，而是在烛光下批阅奏折，眉头紧锁。</p>
+                    <p>"江东水患，百姓流离..."孙权低声自语，声音中带着疲惫，"该如何是好..."</p>
+                    <p>澜躲在暗处，看着这位年轻的君主为民生忧心，手中的匕首不知不觉垂了下来。</p>
+                    <p>接连数日，澜暗中观察孙权，发现他每日只睡两三个时辰，其余时间都在处理政务，接见臣民。</p>
+                    <p>一次，孙权微服私访，遭遇刺客。澜本能地出手相救，暴露了行踪。</p>
+                    <p>"果然是你，"孙权看着澜，眼中没有惊讶，"这些天一直跟着我的人。"</p>
+                    <p>"为何不揭穿我？"澜问。</p>
+                    <p>"因为我想知道，一个本可取我性命却屡次犹豫的刺客，究竟是何心思。"孙权淡淡道。</p>
+                    <p>澜沉默良久，最终单膝跪地："从今以后，我愿效忠于你，不是作为魏国刺客，而是作为你的护卫。"</p>
+                    <p>孙权扶起他，眼中闪过一丝笑意："我等的就是你这句话。"</p>
+                    <p>从此，澜成了孙权最信任的暗卫，两人在乱世中相互扶持，共同面对重重危机。</p>
+                `
+            },
+            3: {
+                title: "剑与权谋",
+                author: "绘梦者",
+                type: "漫画",
+                content: `
+                    <p>两人在战场上的对决，却因一次意外事件而改变了彼此的关系。</p>
+                    <p>赤壁之战前夕，孙权亲自巡视前线，遭遇魏军埋伏。澜奉命刺杀孙权，却在关键时刻发现另一支暗箭射向孙权。</p>
+                    <p>本能反应下，澜挥剑挡开暗箭，自己却中箭受伤。</p>
+                    <p>"为何救我？"孙权扶住倒下的澜，眼中满是疑惑。</p>
+                    <p>"我不知道..."澜虚弱地回答，"只是...身体自己动了..."</p>
+                    <p>孙权将澜带回宫中，破例让敌国刺客在宫中养伤。这一举动引起朝臣非议，但孙权力排众议。</p>
+                    <p>养伤期间，澜看到了孙权不同的一面——他不仅是威严的君主，更是关心臣民、体恤下属的明主。</p>
+                    <p>一次深夜，孙权来到澜的房间，手中拿着一壶酒。</p>
+                    <p>"陪我喝一杯，"孙权说，"就当是感谢你的救命之恩。"</p>
+                    <p>酒过三巡，两人聊起了各自的过往、理想与困惑。那一夜，他们不再是敌对阵营的君主与刺客，只是两个在乱世中寻找方向的年轻人。</p>
+                    <p>伤愈后，澜没有返回魏国，而是选择留在江东，成为孙权的剑与盾。</p>
+                    <p>"我的剑不再为魏国而挥，"澜对孙权说，"而是为你，为江东的百姓。"</p>
+                `
+            },
+            4: {
+                `
+           
+                `
+            },
             
-            const title = document.getElementById('title').value;
-            const author = document.getElementById('author').value;
-            const content = document.getElementById('content').value;
-            const contact = document.getElementById('contact').value;
-            
-            // 在实际应用中，这里应该将数据发送到后端
-            // 由于我们使用GitHub Pages，可以借助GitHub Issues作为简单的数据存储
-            document.getElementById('submissionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const content = document.getElementById('content').value;
-    const contact = document.getElementById('contact').value || '无';
+            }
+        };
 
-    // 构造 Issue 内容
-    const issueBody = `
-    作者：${author}
-    联系方式：${contact}
-    作品内容：
-    ${content}
-    `;
-
-    // 调用 GitHub API 提交 Issue（需替换为你的仓库信息和令牌）
-    fetch('https://api.github.com/repos/windSeeksYou/quanlan-fansite/issues', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'token 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'
-        },
-        body: JSON.stringify({
-            title: title,
-            body: issueBody
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.id) {
-            alert('投稿成功！我们将尽快审核并展示您的作品~');
-            document.getElementById('submissionForm').reset();
-        } else {
-            alert('投稿失败，请稍后再试~');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('投稿失败，请检查网络或令牌是否有效~');
-    });
-});
-
-            
-            // 清空表单
-            document.getElementById('submissionForm').reset();
-        });
-        
         // 角色卡片交互效果
         const characters = document.querySelectorAll('.character');
         characters.forEach(character => {
@@ -685,10 +717,65 @@ window.addEventListener("load", fetchApprovedWorks);
                 });
             });
         });
+
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 模态框功能
+        const modal = document.getElementById('workModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalText = document.getElementById('modalText');
+        const modalClose = document.getElementById('modalClose');
+
+        // 点击作品卡片打开模态框
+        document.querySelectorAll('.work-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const workId = this.getAttribute('data-id');
+                const work = worksData[workId];
+                
+                if (work) {
+                    modalTitle.textContent = work.title;
+                    modalAuthor.textContent = `作者：${work.author} | 类型：${work.type}`;
+                    modalText.innerHTML = work.content;
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // 关闭模态框
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
 </html>
-
-
-
-
