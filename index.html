@@ -3,52 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>权澜同人 - 王者荣耀孙权x澜同人社区</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>王者荣耀 | 孙权x澜同人站</title>
     <style>
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        }
-        
-        :root {
-            --primary-color: #6a5acd;
-            --secondary-color: #4169e1;
-            --accent-color: #9370db;
-            --light-color: #f0f8ff;
-            --dark-color: #2c2c54;
-            --success-color: #4CAF50;
-            --warning-color: #FF9800;
+            font-family: 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #0a0e29;
+            color: #e0e0e0;
             line-height: 1.6;
         }
         
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
         
-        /* 头部样式 */
+        /* 导航栏样式 */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to right, #1a237e, #283593);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             position: sticky;
             top: 0;
             z-index: 100;
         }
         
-        .header-content {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -61,228 +47,195 @@
         
         .logo h1 {
             font-size: 1.8rem;
+            background: linear-gradient(45deg, #ffd700, #ffab00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-left: 10px;
         }
         
-        .logo-icon {
-            font-size: 2rem;
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
-        nav ul {
+        .nav-links {
             display: flex;
             list-style: none;
         }
         
-        nav ul li {
-            margin-left: 20px;
+        .nav-links li {
+            margin-left: 2rem;
         }
         
-        nav ul li a {
-            color: white;
+        .nav-links a {
+            color: #e0e0e0;
             text-decoration: none;
-            font-weight: bold;
-            padding: 8px 12px;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
             border-radius: 4px;
-            transition: background-color 0.3s;
         }
         
-        nav ul li a:hover, nav ul li a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+        .nav-links a:hover {
+            color: #ffd700;
+            background-color: rgba(255, 215, 0, 0.1);
         }
         
-        /* 主要内容区 */
-        .hero {
-            background: linear-gradient(rgba(106, 90, 205, 0.7), rgba(65, 105, 225, 0.7)), url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+        /* 英雄展示区域 */
+        .hero-section {
+            padding: 4rem 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0e29"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23151a4d" stroke-width="1"/></svg>');
             position: relative;
+            overflow: hidden;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* 模块区域 */
-        .modules {
-            padding: 50px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--dark-color);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 10px auto;
-        }
-        
-        .module-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .card-body {
-            padding: 20px;
-        }
-        
-        .card-footer {
-            padding: 15px;
-            background: var(--light-color);
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
         }
         
-        .btn {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
         }
         
-        .btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-        }
-        
-        .btn-outline:hover {
-            background: var(--secondary-color);
-            color: white;
-        }
-        
-        .btn-small {
-            padding: 5px 10px;
-            font-size: 0.9rem;
-        }
-        
-        .btn-danger {
-            background: #e74c3c;
-        }
-        
-        .btn-danger:hover {
-            background: #c0392b;
-        }
-        
-        /* 功能区域 */
-        .features {
-            padding: 50px 0;
-            background: var(--light-color);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
+        .hero-text h2 {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffab00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        /* 表单样式 */
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #b0b0b0;
+        }
+        
+        .hero-images {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            height: 400px;
+        }
+        
+        .character {
+            position: absolute;
+            width: 200px;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s, z-index 0.5s;
+        }
+        
+        .character.sunquan {
+            left: 20%;
+            top: 20px;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            transform: rotate(-5deg);
+            z-index: 2;
+        }
+        
+        .character.lan {
+            right: 20%;
+            top: 20px;
+            background: linear-gradient(45deg, #00695c, #004d40);
+            transform: rotate(5deg);
+            z-index: 1;
+        }
+        
+        .character:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 3;
+        }
+        
+        .character-img {
+            width: 100%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 3rem;
+        }
+        
+        .character-name {
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .sunquan .character-name {
+            background: linear-gradient(to right, #1a237e, #3949ab);
+            color: #ffd700;
+        }
+        
+        .lan .character-name {
+            background: linear-gradient(to right, #00695c, #004d40);
+            color: #4db6ac;
+        }
+        
+        /* 投稿区域样式 */
+        .submission-section {
+            padding: 4rem 0;
+            background-color: #0f1438;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #ffd700;
+        }
+        
+        .submission-form {
+            max-width: 800px;
             margin: 0 auto;
+            background: rgba(30, 35, 70, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #b0b0b0;
         }
         
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #3949ab;
             border-radius: 4px;
+            color: #e0e0e0;
             font-size: 1rem;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.2);
         }
         
         textarea.form-control {
@@ -290,1778 +243,288 @@
             resize: vertical;
         }
         
-        /* 模态框样式 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .submit-btn {
+            display: block;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            animation: modalFadeIn 0.3s;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            margin: 0;
-            color: var(--dark-color);
-        }
-        
-        .close-modal {
-            background: none;
+            padding: 0.75rem;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            color: white;
             border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        /* 投稿展示区样式 */
-        .submissions-container {
-            margin-top: 30px;
-        }
-        
-        .submission-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .submission-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .submission-tab.active {
-            border-bottom-color: var(--primary-color);
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .submission-list {
-            display: none;
-        }
-        
-        .submission-list.active {
-            display: block;
-        }
-        
-        .submission-item {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .submission-item:hover {
-            transform: translateY(-3px);
-        }
-        
-        .submission-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--dark-color);
-        }
-        
-        .submission-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .submission-content {
-            margin-bottom: 15px;
-            line-height: 1.6;
-            white-space: pre-line; /* 保留换行符 */
-        }
-        
-        .submission-category {
-            display: inline-block;
-            background: var(--light-color);
-            color: var(--primary-color);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-        
-        .submission-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .like-btn, .comment-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.3s;
-        }
-        
-        .like-btn:hover, .comment-btn:hover {
-            color: var(--primary-color);
-        }
-        
-        .like-btn.liked {
-            color: #e74c3c;
-        }
-        
-        .comments-section {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #eee;
-            display: none;
-        }
-        
-        .comments-section.active {
-            display: block;
-        }
-        
-        .comment-list {
-            margin-bottom: 15px;
-        }
-        
-        .comment-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #f5f5f5;
-        }
-        
-        .comment-author {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .comment-form {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .comment-input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ddd;
             border-radius: 4px;
-        }
-        
-        /* 反馈区样式 */
-        .feedback-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-top: 30px;
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .contact-info {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            color: var(--primary-color);
-        }
-        
-        .contact-email {
-            display: inline-block;
-            background: var(--light-color);
-            padding: 10px 20px;
-            border-radius: 4px;
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .contact-email:hover {
-            background: var(--secondary-color);
-            color: white;
-        }
-        
-        /* 页脚 */
-        footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-links {
-            margin: 20px 0;
-        }
-        
-        .social-links a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-            }
-            
-            nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 5px;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .module-cards, .feature-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .submission-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .submission-tab {
-                flex: 1;
-                min-width: 100px;
-                text-align: center;
-            }
-            
-            .submission-actions {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .action-buttons {
-                justify-content: space-between;
-            }
-        }
-        
-        /* 用户状态指示 */
-        .user-status {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-right: 10px;
-            cursor: pointer;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .user-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-            min-width: 150px;
-            z-index: 101;
-        }
-        
-        .user-menu.active {
-            display: block;
-        }
-        
-        .user-menu-item {
-            padding: 10px 15px;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: background 0.3s;
         }
         
-        .user-menu-item:hover {
-            background: var(--light-color);
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #3949ab, #1a237e);
         }
         
-        /* 头像选择器样式 */
-        .avatar-options {
+        /* 作品展示区域 */
+        .works-section {
+            padding: 4rem 0;
+        }
+        
+        .works-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
-        .avatar-option {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: border-color 0.3s;
+        .work-card {
+            background: rgba(30, 35, 70, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .work-image {
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-        }
-        
-        .avatar-option:hover, .avatar-option.selected {
-            border-color: var(--primary-color);
-        }
-        
-        .avatar-upload {
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        /* 点赞动画 */
-        @keyframes likeAnimation {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-        
-        .liked {
-            animation: likeAnimation 0.4s;
-            color: #e74c3c;
-        }
-        
-        /* 标签样式 */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        
-        .tag {
-            background: var(--light-color);
-            color: var(--primary-color);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-        
-        /* 空状态样式 */
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-        }
-        
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #ccc;
-        }
-        
-        /* 加载状态 */
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: var(--primary-color);
-        }
-        
-        .loading i {
+            color: rgba(255, 255, 255, 0.5);
             font-size: 2rem;
-            margin-bottom: 10px;
-            animation: spin 1s linear infinite;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .work-content {
+            padding: 1.5rem;
         }
         
-        /* GitHub集成样式 */
-        .github-info {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        .work-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+        
+        .work-author {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .work-excerpt {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: #050920;
+            padding: 2rem 0;
             text-align: center;
+            color: #b0b0b0;
         }
         
-        .github-info h3 {
-            color: var(--dark-color);
-            margin-bottom: 10px;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 1rem;
         }
         
-        .github-info p {
-            margin-bottom: 15px;
-            color: #666;
+        .footer-links li {
+            margin: 0 1rem;
         }
         
-        /* 消息提示样式 */
-        .message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            z-index: 10000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: opacity 0.3s;
-            opacity: 0;
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
-        .message.success {
-            background-color: var(--success-color);
+        .footer-links a:hover {
+            color: #ffd700;
         }
         
-        .message.error {
-            background-color: #e74c3c;
-        }
-        
-        .message.info {
-            background-color: var(--primary-color);
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .character {
+                width: 150px;
+                height: 280px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 头部 -->
+    <!-- 导航栏 -->
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <span class="logo-icon">⚔️</span>
-                <h1>权澜同人</h1>
-            </div>
+        <div class="container">
             <nav>
-                <ul>
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="#modules">内容模块</a></li>
-                    <li><a href="#features">功能区域</a></li>
-                    <li><a href="#" id="login-link">登录/注册</a></li>
+                <div class="logo">
+                    <div class="logo-img">K</div>
+                    <h1>王者荣耀 | 孙权x澜同人站</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">人物介绍</a></li>
+                    <li><a href="#works">同人作品</a></li>
+                    <li><a href="#submission">投稿</a></li>
                 </ul>
             </nav>
-            <div class="user-status">
-                <div class="user-avatar" id="user-avatar">?</div>
-                <span id="user-name">游客</span>
-                <div class="user-menu" id="user-menu">
-                    <div class="user-menu-item" id="change-username-btn">更改用户名</div>
-                    <div class="user-menu-item" id="change-avatar-btn">更换头像</div>
-                    <div class="user-menu-item" id="logout-btn">退出登录</div>
-                </div>
-            </div>
         </div>
     </header>
 
-    <!-- 主内容区 -->
-    <main>
-        <!-- 英雄区域 -->
-        <section class="hero" id="home">
+    <!-- 英雄展示区域 -->
+    <section class="hero-section" id="home">
+        <div class="container">
             <div class="hero-content">
-                <h2>王者荣耀 孙权x澜 同人社区</h2>
-                <p>本站为王者荣耀孙权x澜的同人网站，欢迎太太前来投稿使用</p>
-                <button class="btn" style="margin-top: 20px;" id="join-btn">立即加入社区</button>
+                <div class="hero-text">
+                    <h2>江东之主与魏都刺客</h2>
+                    <p>在王者大陆的纷争中，东吴的君主孙权与魏都的刺客澜，两个截然不同的灵魂，因命运而交织在一起。</p>
+                    <p>他们的故事，充满了权谋与忠诚，背叛与救赎，在这乱世之中谱写出一曲荡气回肠的传奇。</p>
+                </div>
+                <div class="hero-images">
+                    <div class="character sunquan">
+                        <div class="character-img">孙权</div>
+                        <div class="character-name">孙权 - 江东之主</div>
+                    </div>
+                    <div class="character lan">
+                        <div class="character-img">澜</div>
+                        <div class="character-name">澜 - 魏都刺客</div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 模块区域 -->
-        <section class="modules" id="modules">
-            <div class="container">
-                <h2 class="section-title">内容模块</h2>
-                <div class="module-cards">
-                    <!-- 同人文模块 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>同人文</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>分享和阅读关于孙权与澜的同人小说、短文、诗歌等文字创作。</p>
-                            <ul>
-                                <li>长篇连载</li>
-                                <li>短篇故事</li>
-                                <li>诗歌散文</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">古风</span>
-                                <span class="tag">权谋</span>
-                                <span class="tag">江湖</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn read-more-btn" data-category="literature">阅读更多</a>
-                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- 同人图模块 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>同人图</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>欣赏和分享关于孙权与澜的同人插画、漫画、表情包等视觉创作。</p>
-                            <ul>
-                                <li>插画作品</li>
-                                <li>漫画连载</li>
-                                <li>表情包</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Q版</span>
-                                <span class="tag">写实</span>
-                                <span class="tag">水墨</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn read-more-btn" data-category="art">浏览更多</a>
-                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- 其他模块 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>其他</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>分享关于孙权与澜的其他创作形式，如视频、音乐、手工等。</p>
-                            <ul>
-                                <li>视频剪辑</li>
-                                <li>音乐创作</li>
-                                <li>手工制品</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">视频</span>
-                                <span class="tag">音乐</span>
-                                <span class="tag">手工</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn read-more-btn" data-category="other">探索更多</a>
-                            <span class="likes"><i class="far fa-heart"></i> <span class="like-count">0</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 功能区域 -->
-        <section class="features" id="features">
-            <div class="container">
-                <h2 class="section-title">功能区域</h2>
-                <div class="feature-grid">
-                    <!-- 点赞功能 -->
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-thumbs-up"></i></div>
-                        <h3>点赞功能</h3>
-                        <p>为您喜欢的作品点赞，支持创作者，让优秀作品获得更多关注。</p>
-                        <button class="btn" style="margin-top: 15px;" id="like-demo-btn">体验点赞</button>
-                    </div>
-                    
-                    <!-- 注册登录 -->
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-user-lock"></i></div>
-                        <h3>注册登录</h3>
-                        <p>创建个人账户，收藏喜欢的作品，关注创作者，参与社区互动。</p>
-                        <button class="btn" style="margin-top: 15px;" id="auth-btn">注册/登录</button>
-                    </div>
-                    
-                    <!-- 投稿区 -->
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-edit"></i></div>
-                        <h3>投稿区</h3>
-                        <p>分享您的创作，无论是文字、图片还是其他形式的作品。</p>
-                        <button class="btn" style="margin-top: 15px;" id="submit-btn">立即投稿</button>
-                    </div>
-                    
-                    <!-- 联系我们 -->
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-envelope"></i></div>
-                        <h3>联系我们</h3>
-                        <p>如有任何问题或建议，欢迎通过邮箱与我们联系。</p>
-                        <button class="btn" style="margin-top: 15px;" id="contact-btn">联系邮箱</button>
-                    </div>
-                </div>
-                
-                <!-- GitHub集成信息 -->
-                <div class="github-info">
-                    <h3>GitHub 集成</h3>
-                    <p>本站使用 GitHub 仓库存储所有投稿内容，确保数据安全可靠</p>
-                    <p>您的投稿将自动提交到 GitHub 仓库，并实时同步到网站</p>
-                    <button class="btn" id="refresh-submissions-btn">
-                        <i class="fas fa-sync-alt"></i> 刷新投稿数据
-                    </button>
-                </div>
-                
-                <!-- 投稿展示区 -->
-                <div class="submissions-container">
-                    <h3 class="section-title">投稿展示</h3>
-                    
-                    <div class="submission-tabs">
-                        <div class="submission-tab active" data-category="all">全部投稿</div>
-                        <div class="submission-tab" data-category="literature">同人文</div>
-                        <div class="submission-tab" data-category="art">同人图</div>
-                        <div class="submission-tab" data-category="other">其他</div>
-                    </div>
-                    
-                    <div class="submission-list active" id="submission-all">
-                        <div class="loading">
-                            <i class="fas fa-spinner"></i>
-                            <p>正在加载投稿数据...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="submission-list" id="submission-literature">
-                        <!-- 同人文投稿内容将通过JS动态生成 -->
-                    </div>
-                    
-                    <div class="submission-list" id="submission-art">
-                        <!-- 同人图投稿内容将通过JS动态生成 -->
-                    </div>
-                    
-                    <div class="submission-list" id="submission-other">
-                        <!-- 其他投稿内容将通过JS动态生成 -->
-                    </div>
-                </div>
-                
-                <!-- 投稿表单 -->
-                <div style="margin-top: 50px;">
-                    <h3 class="section-title">投稿表单</h3>
-                    <div class="form-container">
-                        <form id="submission-form">
-                            <div class="form-group">
-                                <label for="title">作品标题</label>
-                                <input type="text" id="title" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="category">作品分类</label>
-                                <select id="category" class="form-control" required>
-                                    <option value="">请选择分类</option>
-                                    <option value="literature">同人文</option>
-                                    <option value="art">同人图</option>
-                                    <option value="other">其他</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="content">作品内容/描述</label>
-                                <textarea id="content" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="file">上传文件</label>
-                                <input type="file" id="file" class="form-control">
-                            </div>
-                            <button type="submit" class="btn" style="width: 100%;">提交投稿</button>
-                        </form>
-                    </div>
-                </div>
-                
-                <!-- 反馈区 -->
-                <div style="margin-top: 50px;">
-                    <h3 class="section-title">联系我们</h3>
-                    <div class="feedback-container">
-                        <div class="feature-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>意见反馈与建议</h3>
-                        <p>如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
-                        <div class="contact-info">
-                            <p>请私信联系邮箱：</p>
-                            <a href="mailto:1227767119@qq.com" class="contact-email">1227767119@qq.com</a>
-                        </div>
-                        <p>我们会在收到邮件后尽快回复您！</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 登录/注册模态框 -->
-    <div class="modal" id="auth-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="auth-modal-title">用户登录</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="auth-form">
+    <!-- 投稿区域 -->
+    <section class="submission-section" id="submission">
+        <div class="container">
+            <h2 class="section-title">投稿你的同人作品</h2>
+            <div class="submission-form">
+                <form id="submissionForm">
                     <div class="form-group">
-                        <label for="email">邮箱地址</label>
-                        <input type="email" id="email" class="form-control" required>
+                        <label for="title">作品标题</label>
+                        <input type="text" id="title" class="form-control" placeholder="请输入作品标题" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">密码</label>
-                        <input type="password" id="password" class="form-control" required>
+                        <label for="author">作者名称</label>
+                        <input type="text" id="author" class="form-control" placeholder="请输入您的名称" required>
                     </div>
-                    <div class="form-group" id="confirm-password-group" style="display: none;">
-                        <label for="confirm-password">确认密码</label>
-                        <input type="password" id="confirm-password" class="form-control">
+                    <div class="form-group">
+                        <label for="content">作品内容</label>
+                        <textarea id="content" class="form-control" placeholder="请在此输入您的同人作品内容..." required></textarea>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%; margin-bottom: 15px;" id="auth-submit-btn">登录</button>
-                    <div style="text-align: center;">
-                        <a href="#" id="switch-auth-mode">没有账号？点击注册</a>
+                    <div class="form-group">
+                        <label for="contact">联系方式 (可选)</label>
+                        <input type="text" id="contact" class="form-control" placeholder="邮箱或社交账号">
                     </div>
+                    <button type="submit" class="submit-btn">提交作品</button>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 更改用户名模态框 -->
-    <div class="modal" id="username-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>更改用户名</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="username-form">
-                    <div class="form-group">
-                        <label for="new-username">新用户名</label>
-                        <input type="text" id="new-username" class="form-control" required>
+    <!-- 作品展示区域 -->
+    <section class="works-section" id="works">
+        <div class="container">
+            <h2 class="section-title">同人作品展示</h2>
+            <div class="works-grid">
+                <!-- 示例作品1 -->
+                <div class="work-card">
+                    <div class="work-image">插图</div>
+                    <div class="work-content">
+                        <h3 class="work-title">江东夜宴</h3>
+                        <p class="work-author">作者：江东文人</p>
+                        <p class="work-excerpt">孙权设宴招待各方来使，澜作为魏国刺客潜入宴会，两人在月光下第一次相遇...</p>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%;">确认更改</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- 更换头像模态框 -->
-    <div class="modal" id="avatar-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>更换头像</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h4 style="margin-bottom: 15px;">选择预设头像</h4>
-                <div class="avatar-options" id="avatar-options">
-                    <!-- 预设头像将通过JS动态生成 -->
                 </div>
                 
-                <div class="avatar-upload">
-                    <h4 style="margin-bottom: 15px;">或上传自定义头像</h4>
-                    <input type="file" id="avatar-upload" accept="image/*" style="margin-bottom: 15px;">
-                    <button class="btn" id="upload-avatar-btn">上传头像</button>
+                <!-- 示例作品2 -->
+                <div class="work-card">
+                    <div class="work-image">小说</div>
+                    <div class="work-content">
+                        <h3 class="work-title">暗流涌动</h3>
+                        <p class="work-author">作者：墨染江南</p>
+                        <p class="work-excerpt">澜接到刺杀孙权的任务，却在执行过程中发现了孙权不为人知的一面...</p>
+                    </div>
+                </div>
+                
+                <!-- 示例作品3 -->
+                <div class="work-card">
+                    <div class="work-image">漫画</div>
+                    <div class="work-content">
+                        <h3 class="work-title">剑与权谋</h3>
+                        <p class="work-author">作者：绘梦者</p>
+                        <p class="work-excerpt">两人在战场上的对决，却因一次意外事件而改变了彼此的关系...</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- 投稿成功模态框 -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>投稿成功</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align: center; padding: 20px 0;">
-                    <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color);"></i>
-                </p>
-                <p style="text-align: center;">感谢您的投稿！作品已通过审核并发布到相应分区。</p>
-                <button class="btn" style="width: 100%; margin-top: 20px;" id="close-success-modal">确定</button>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- 页脚 -->
     <footer>
-        <div class="container footer-content">
-            <p>权澜同人 &copy; 2025 - 王者荣耀孙权x澜同人社区</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-weibo"></i></a>
-                <a href="#"><i class="fab fa-weixin"></i></a>
-                <a href="#"><i class="fab fa-qq"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-            <p>本站为同人创作网站，与官方无关</p>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">投稿指南</a></li>
+                <li><a href="#">版权声明</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+            <p>© 2023 王者荣耀孙权x澜同人站 | 本网站为粉丝创作，与官方无关</p>
         </div>
     </footer>
 
     <script>
-        // 用户状态管理
-        let currentUser = null;
-        let isLoginMode = true;
-        let submissions = [];
-        let likes = {};
-        let comments = {};
-        
-        // 预设头像列表
-        const presetAvatars = [
-            '⚔️', '👑', '🐉', '🌊', '🗡️', '🛡️', '🎭', '🌟'
-        ];
-
-        // GitHub API 配置
-        // 注意：在生产环境中，这些敏感信息应该通过环境变量设置
-        const GITHUB_API_BASE = 'https://api.github.com';
-        const GITHUB_REPO_OWNER = 'YOUR_GITHUB_USERNAME'; // 替换为您的GitHub用户名
-        const GITHUB_REPO_NAME = 'YOUR_REPO_NAME'; // 替换为您的仓库名
-        const GITHUB_TOKEN = 'YOUR_GITHUB_TOKEN'; // 替换为您的GitHub个人访问令牌
-        
-        // 投稿数据文件路径
-        const SUBMISSIONS_FILE_PATH = 'data/submissions.json';
-        const LIKES_FILE_PATH = 'data/likes.json';
-        const COMMENTS_FILE_PATH = 'data/comments.json';
-
-        // DOM元素
-        const authModal = document.getElementById('auth-modal');
-        const successModal = document.getElementById('success-modal');
-        const usernameModal = document.getElementById('username-modal');
-        const avatarModal = document.getElementById('avatar-modal');
-        const authForm = document.getElementById('auth-form');
-        const usernameForm = document.getElementById('username-form');
-        const authModalTitle = document.getElementById('auth-modal-title');
-        const authSubmitBtn = document.getElementById('auth-submit-btn');
-        const switchAuthMode = document.getElementById('switch-auth-mode');
-        const confirmPasswordGroup = document.getElementById('confirm-password-group');
-        const loginLink = document.getElementById('login-link');
-        const joinBtn = document.getElementById('join-btn');
-        const authBtn = document.getElementById('auth-btn');
-        const submitBtn = document.getElementById('submit-btn');
-        const contactBtn = document.getElementById('contact-btn');
-        const likeDemoBtn = document.getElementById('like-demo-btn');
-        const submissionForm = document.getElementById('submission-form');
-        const closeSuccessModal = document.getElementById('close-success-modal');
-        const userAvatar = document.getElementById('user-avatar');
-        const userName = document.getElementById('user-name');
-        const userMenu = document.getElementById('user-menu');
-        const changeUsernameBtn = document.getElementById('change-username-btn');
-        const changeAvatarBtn = document.getElementById('change-avatar-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const avatarOptions = document.getElementById('avatar-options');
-        const avatarUpload = document.getElementById('avatar-upload');
-        const uploadAvatarBtn = document.getElementById('upload-avatar-btn');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
-        const likeButtons = document.querySelectorAll('.likes');
-        const readMoreButtons = document.querySelectorAll('.read-more-btn');
-        const submissionTabs = document.querySelectorAll('.submission-tab');
-        const refreshSubmissionsBtn = document.getElementById('refresh-submissions-btn');
-
-        // 页面加载时检查登录状态
-        document.addEventListener('DOMContentLoaded', function() {
-            checkLoginStatus();
-            setupPresetAvatars();
-            setupEventListeners();
-            loadAllData(); // 从GitHub加载所有数据
-        });
-
-        // 设置事件监听器
-        function setupEventListeners() {
-            // 登录注册相关
-            loginLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                openAuthModal();
-            });
-            
-            joinBtn.addEventListener('click', openAuthModal);
-            authBtn.addEventListener('click', openAuthModal);
-            
-            // 表单提交
-            authForm.addEventListener('submit', handleAuthSubmit);
-            usernameForm.addEventListener('submit', handleUsernameChange);
-            submissionForm.addEventListener('submit', handleSubmission);
-            
-            // 模态框关闭
-            closeSuccessModal.addEventListener('click', closeModals);
-            
-            closeModalButtons.forEach(button => {
-                button.addEventListener('click', closeModals);
-            });
-            
-            // 用户菜单
-            userAvatar.addEventListener('click', toggleUserMenu);
-            changeUsernameBtn.addEventListener('click', openUsernameModal);
-            changeAvatarBtn.addEventListener('click', openAvatarModal);
-            logoutBtn.addEventListener('click', handleLogout);
-            
-            // 其他功能
-            likeDemoBtn.addEventListener('click', handleLikeDemo);
-            contactBtn.addEventListener('click', scrollToContact);
-            uploadAvatarBtn.addEventListener('click', handleAvatarUpload);
-            refreshSubmissionsBtn.addEventListener('click', loadAllData);
-            
-            // 点赞功能
-            likeButtons.forEach(button => {
-                button.addEventListener('click', handleLike);
-            });
-            
-            // 阅读更多按钮
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const category = this.getAttribute('data-category');
-                    showSubmissionTab(category);
-                    document.querySelector('.submissions-container').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-            
-            // 投稿标签切换
-            submissionTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    showSubmissionTab(category);
-                });
-            });
-            
-            // 切换登录/注册模式
-            switchAuthMode.addEventListener('click', toggleAuthMode);
-            
-            // 点击模态框外部关闭
-            window.addEventListener('click', function(e) {
-                if (e.target === authModal || e.target === successModal || 
-                    e.target === usernameModal || e.target === avatarModal) {
-                    closeModals();
-                }
-                
-                // 点击用户菜单外部关闭菜单
-                if (!e.target.closest('.user-status')) {
-                    userMenu.classList.remove('active');
-                }
-            });
-
-            // 平滑滚动
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if (this.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 80,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-            
-            // 立即投稿按钮滚动到投稿表单
-            submitBtn.addEventListener('click', function() {
-                document.querySelector('#submission-form').scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // 设置预设头像
-        function setupPresetAvatars() {
-            avatarOptions.innerHTML = '';
-            presetAvatars.forEach(avatar => {
-                const avatarOption = document.createElement('div');
-                avatarOption.className = 'avatar-option';
-                avatarOption.innerHTML = avatar;
-                
-                avatarOption.addEventListener('click', function() {
-                    if (currentUser) {
-                        currentUser.avatar = avatar;
-                        currentUser.avatarType = 'emoji';
-                        updateUserInterface();
-                        saveUserState();
-                        alert('头像已更换！');
-                        avatarModal.style.display = 'none';
-                    }
-                });
-                
-                avatarOptions.appendChild(avatarOption);
-            });
-        }
-
-        // 从GitHub加载所有数据
-        async function loadAllData() {
-            try {
-                // 显示加载状态
-                document.querySelectorAll('.submission-list').forEach(list => {
-                    list.innerHTML = `
-                        <div class="loading">
-                            <i class="fas fa-spinner"></i>
-                            <p>正在从GitHub加载数据...</p>
-                        </div>
-                    `;
-                });
-                
-                // 并行加载所有数据
-                const [submissionsData, likesData, commentsData] = await Promise.all([
-                    loadDataFromGitHub(SUBMISSIONS_FILE_PATH),
-                    loadDataFromGitHub(LIKES_FILE_PATH),
-                    loadDataFromGitHub(COMMENTS_FILE_PATH)
-                ]);
-                
-                // 更新应用状态
-                submissions = submissionsData || [];
-                likes = likesData || {};
-                comments = commentsData || {};
-                
-                // 渲染投稿内容
-                renderSubmissions();
-                
-                // 显示成功消息
-                showMessage('数据已从GitHub同步！', 'success');
-            } catch (error) {
-                console.error('从GitHub加载数据失败:', error);
-                
-                // 显示错误消息
-                showMessage('加载数据失败，请稍后重试', 'error');
-                
-                // 回退到本地存储
-                submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-                likes = JSON.parse(localStorage.getItem('likes')) || {};
-                comments = JSON.parse(localStorage.getItem('comments')) || {};
-                
-                renderSubmissions();
-            }
-        }
-
-        // 从GitHub加载数据
-        async function loadDataFromGitHub(filePath) {
-            try {
-                // 构建GitHub API URL
-                const apiUrl = `${GITHUB_API_BASE}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${filePath}`;
-                
-                // 发送请求
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`GitHub API error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // 解码Base64内容
-                const content = atob(data.content);
-                
-                // 解析JSON
-                return JSON.parse(content);
-            } catch (error) {
-                console.error(`加载 ${filePath} 失败:`, error);
-                return null;
-            }
-        }
-
-        // 保存数据到GitHub
-        async function saveDataToGitHub(filePath, data) {
-            try {
-                // 构建GitHub API URL
-                const apiUrl = `${GITHUB_API_BASE}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${filePath}`;
-                
-                // 首先获取文件的SHA（如果存在）
-                let sha = null;
-                try {
-                    const getResponse = await fetch(apiUrl, {
-                        headers: {
-                            'Authorization': `token ${GITHUB_TOKEN}`,
-                            'Accept': 'application/vnd.github.v3+json'
-                        }
-                    });
-                    
-                    if (getResponse.ok) {
-                        const fileData = await getResponse.json();
-                        sha = fileData.sha;
-                    }
-                } catch (error) {
-                    // 文件可能不存在，这是正常的
-                }
-                
-                // 准备请求体
-                const content = btoa(JSON.stringify(data, null, 2));
-                const requestBody = {
-                    message: `Update ${filePath}`,
-                    content: content,
-                    sha: sha
-                };
-                
-                // 发送PUT请求
-                const response = await fetch(apiUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`GitHub API error: ${response.status}`);
-                }
-                
-                return true;
-            } catch (error) {
-                console.error(`保存 ${filePath} 失败:`, error);
-                return false;
-            }
-        }
-
-        // 显示消息
-        function showMessage(message, type = 'info') {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.textContent = message;
-            document.body.appendChild(messageDiv);
-            
-            // 显示消息
-            setTimeout(() => {
-                messageDiv.style.opacity = '1';
-            }, 100);
-            
-            // 3秒后隐藏消息
-            setTimeout(() => {
-                messageDiv.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(messageDiv);
-                }, 300);
-            }, 3000);
-        }
-
-        // 渲染投稿内容
-        function renderSubmissions() {
-            // 清空所有投稿列表
-            document.querySelectorAll('.submission-list').forEach(list => {
-                list.innerHTML = '';
-            });
-            
-            // 如果没有投稿，显示空状态
-            if (submissions.length === 0) {
-                document.querySelectorAll('.submission-list').forEach(list => {
-                    list.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-inbox"></i>
-                            <p>暂无投稿，快来发布您的第一份作品吧！</p>
-                        </div>
-                    `;
-                });
-                return;
-            }
-            
-            // 按分类渲染投稿
-            const categories = ['all', 'literature', 'art', 'other'];
-            
-            categories.forEach(category => {
-                const container = document.getElementById(`submission-${category}`);
-                let filteredSubmissions = submissions;
-                
-                if (category !== 'all') {
-                    filteredSubmissions = submissions.filter(sub => sub.category === category);
-                }
-                
-                if (filteredSubmissions.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-inbox"></i>
-                            <p>此分类暂无投稿</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                filteredSubmissions.forEach(submission => {
-                    const submissionItem = document.createElement('div');
-                    submissionItem.className = 'submission-item';
-                    
-                    let categoryText = '同人文';
-                    if (submission.category === 'art') categoryText = '同人图';
-                    if (submission.category === 'other') categoryText = '其他';
-                    
-                    // 检查用户是否已经点赞
-                    const submissionLikes = likes[submission.id] || [];
-                    const isLiked = currentUser && submissionLikes.includes(currentUser.email);
-                    const likeCount = submissionLikes.length;
-                    
-                    // 获取评论
-                    const submissionComments = comments[submission.id] || [];
-                    
-                    submissionItem.innerHTML = `
-                        <div class="submission-title">${submission.title}</div>
-                        <div class="submission-meta">
-                            <span>作者：${submission.author}</span>
-                            <span>${submission.date}</span>
-                        </div>
-                        <div class="submission-content">${submission.content}</div>
-                        <div>
-                            <span class="submission-category">${categoryText}</span>
-                        </div>
-                        <div class="submission-actions">
-                            <div class="action-buttons">
-                                <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${submission.id}">
-                                    <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i> 
-                                    <span class="like-count">${likeCount}</span>
-                                </button>
-                                <button class="comment-btn" data-id="${submission.id}">
-                                    <i class="far fa-comment"></i> 
-                                    <span class="comment-count">${submissionComments.length}</span>
-                                </button>
-                            </div>
-                            ${currentUser && currentUser.email === submission.authorEmail ? 
-                                `<button class="btn btn-small btn-danger delete-btn" data-id="${submission.id}">删除</button>` : ''}
-                        </div>
-                        <div class="comments-section" id="comments-${submission.id}">
-                            <div class="comment-list">
-                                ${submissionComments.map(comment => `
-                                    <div class="comment-item">
-                                        <span class="comment-author">${comment.author}:</span>
-                                        <span class="comment-text">${comment.text}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="comment-form">
-                                <input type="text" class="comment-input" placeholder="写下您的评论..." data-id="${submission.id}">
-                                <button class="btn btn-small submit-comment" data-id="${submission.id}">评论</button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    container.appendChild(submissionItem);
-                });
-            });
-            
-            // 添加点赞事件监听
-            document.querySelectorAll('.like-btn').forEach(button => {
-                button.addEventListener('click', handleSubmissionLike);
-            });
-            
-            // 添加评论事件监听
-            document.querySelectorAll('.comment-btn').forEach(button => {
-                button.addEventListener('click', toggleComments);
-            });
-            
-            // 添加评论提交事件监听
-            document.querySelectorAll('.submit-comment').forEach(button => {
-                button.addEventListener('click', handleCommentSubmit);
-            });
-            
-            // 添加删除事件监听
-            document.querySelectorAll('.delete-btn').forEach(button => {
-                button.addEventListener('click', handleDeleteSubmission);
-            });
-        }
-
-        // 处理投稿点赞
-        async function handleSubmissionLike(e) {
-            if (!currentUser) {
-                alert('请先登录再点赞！');
-                openAuthModal();
-                return;
-            }
-            
-            const submissionId = e.currentTarget.getAttribute('data-id');
-            const likeBtn = e.currentTarget;
-            const likeIcon = likeBtn.querySelector('i');
-            const likeCount = likeBtn.querySelector('.like-count');
-            
-            // 初始化该作品的点赞数组
-            if (!likes[submissionId]) {
-                likes[submissionId] = [];
-            }
-            
-            // 检查用户是否已经点赞
-            const userIndex = likes[submissionId].indexOf(currentUser.email);
-            
-            if (userIndex === -1) {
-                // 用户未点赞，添加点赞
-                likes[submissionId].push(currentUser.email);
-                likeIcon.classList.remove('far');
-                likeIcon.classList.add('fas', 'liked');
-                likeBtn.classList.add('liked');
-            } else {
-                // 用户已点赞，取消点赞
-                likes[submissionId].splice(userIndex, 1);
-                likeIcon.classList.remove('fas', 'liked');
-                likeIcon.classList.add('far');
-                likeBtn.classList.remove('liked');
-            }
-            
-            // 更新点赞数
-            likeCount.textContent = likes[submissionId].length;
-            
-            // 保存点赞状态到GitHub
-            const success = await saveDataToGitHub(LIKES_FILE_PATH, likes);
-            
-            if (success) {
-                // 同时更新本地存储作为备份
-                localStorage.setItem('likes', JSON.stringify(likes));
-            } else {
-                showMessage('点赞操作失败，请稍后重试', 'error');
-            }
-        }
-
-        // 切换评论显示/隐藏
-        function toggleComments(e) {
-            const submissionId = e.currentTarget.getAttribute('data-id');
-            const commentsSection = document.getElementById(`comments-${submissionId}`);
-            commentsSection.classList.toggle('active');
-        }
-
-        // 处理评论提交
-        async function handleCommentSubmit(e) {
-            if (!currentUser) {
-                alert('请先登录再评论！');
-                openAuthModal();
-                return;
-            }
-            
-            const submissionId = e.currentTarget.getAttribute('data-id');
-            const commentInput = document.querySelector(`.comment-input[data-id="${submissionId}"]`);
-            const commentText = commentInput.value.trim();
-            
-            if (!commentText) {
-                alert('请输入评论内容');
-                return;
-            }
-            
-            // 初始化该作品的评论数组
-            if (!comments[submissionId]) {
-                comments[submissionId] = [];
-            }
-            
-            // 添加新评论
-            comments[submissionId].push({
-                author: currentUser.name,
-                text: commentText,
-                date: new Date().toLocaleString()
-            });
-            
-            // 保存评论到GitHub
-            const success = await saveDataToGitHub(COMMENTS_FILE_PATH, comments);
-            
-            if (success) {
-                // 同时更新本地存储作为备份
-                localStorage.setItem('comments', JSON.stringify(comments));
-                
-                // 清空输入框
-                commentInput.value = '';
-                
-                // 重新渲染投稿内容以更新评论
-                renderSubmissions();
-                
-                // 保持评论区域展开
-                document.getElementById(`comments-${submissionId}`).classList.add('active');
-            } else {
-                showMessage('评论提交失败，请稍后重试', 'error');
-            }
-        }
-
-        // 处理删除投稿
-        async function handleDeleteSubmission(e) {
-            const submissionId = parseInt(e.currentTarget.getAttribute('data-id'));
-            
-            if (confirm('确定要删除这篇投稿吗？此操作不可撤销。')) {
-                // 从投稿数组中移除
-                submissions = submissions.filter(sub => sub.id !== submissionId);
-                
-                // 保存更新后的投稿到GitHub
-                const success = await saveDataToGitHub(SUBMISSIONS_FILE_PATH, submissions);
-                
-                if (success) {
-                    // 同时更新本地存储作为备份
-                    localStorage.setItem('submissions', JSON.stringify(submissions));
-                    
-                    // 重新渲染投稿内容
-                    renderSubmissions();
-                    
-                    showMessage('投稿已成功删除！', 'success');
-                } else {
-                    showMessage('删除投稿失败，请稍后重试', 'error');
-                }
-            }
-        }
-
-        // 显示指定分类的投稿
-        function showSubmissionTab(category) {
-            // 更新标签状态
-            submissionTabs.forEach(tab => {
-                tab.classList.remove('active');
-                if (tab.getAttribute('data-category') === category) {
-                    tab.classList.add('active');
-                }
-            });
-            
-            // 显示对应分类的内容
-            document.querySelectorAll('.submission-list').forEach(list => {
-                list.classList.remove('active');
-            });
-            
-            document.getElementById(`submission-${category}`).classList.add('active');
-        }
-
-        // 检查登录状态
-        function checkLoginStatus() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateUserInterface();
-            }
-        }
-
-        // 更新用户界面
-        function updateUserInterface() {
-            if (currentUser) {
-                if (currentUser.avatarType === 'emoji') {
-                    userAvatar.textContent = currentUser.avatar;
-                    userAvatar.style.backgroundImage = 'none';
-                    userAvatar.style.backgroundColor = currentUser.avatarColor || '#9370db';
-                } else if (currentUser.avatarType === 'image') {
-                    userAvatar.textContent = '';
-                    userAvatar.style.backgroundImage = `url(${currentUser.avatar})`;
-                    userAvatar.style.backgroundColor = 'transparent';
-                }
-                
-                userName.textContent = currentUser.name;
-                userMenu.style.display = 'none';
-                loginLink.textContent = '已登录';
-                loginLink.style.pointerEvents = 'none';
-            } else {
-                userAvatar.textContent = '?';
-                userAvatar.style.backgroundImage = 'none';
-                userAvatar.style.backgroundColor = '#9370db';
-                userName.textContent = '游客';
-                userMenu.style.display = 'none';
-                loginLink.textContent = '登录/注册';
-                loginLink.style.pointerEvents = 'auto';
-            }
-        }
-
-        // 保存用户状态到localStorage
-        function saveUserState() {
-            if (currentUser) {
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            } else {
-                localStorage.removeItem('currentUser');
-            }
-        }
-
-        // 切换登录/注册模式
-        function toggleAuthMode(e) {
+        // 表单提交处理
+        document.getElementById('submissionForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            isLoginMode = !isLoginMode;
-            
-            if (isLoginMode) {
-                authModalTitle.textContent = '用户登录';
-                authSubmitBtn.textContent = '登录';
-                switchAuthMode.textContent = '没有账号？点击注册';
-                confirmPasswordGroup.style.display = 'none';
-            } else {
-                authModalTitle.textContent = '用户注册';
-                authSubmitBtn.textContent = '注册';
-                switchAuthMode.textContent = '已有账号？点击登录';
-                confirmPasswordGroup.style.display = 'block';
-            }
-        }
-
-        // 打开登录模态框
-        function openAuthModal() {
-            if (currentUser) {
-                alert('您已经登录了！');
-                return;
-            }
-            authModal.style.display = 'flex';
-        }
-
-        // 关闭模态框
-        function closeModals() {
-            authModal.style.display = 'none';
-            successModal.style.display = 'none';
-            usernameModal.style.display = 'none';
-            avatarModal.style.display = 'none';
-        }
-
-        // 处理登录/注册表单提交
-        function handleAuthSubmit(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (!isLoginMode) {
-                const confirmPassword = document.getElementById('confirm-password').value;
-                
-                if (password !== confirmPassword) {
-                    alert('两次输入的密码不一致！');
-                    return;
-                }
-                
-                if (password.length < 6) {
-                    alert('密码长度至少6位！');
-                    return;
-                }
-                
-                // 模拟注册成功
-                currentUser = {
-                    email: email,
-                    name: email.split('@')[0],
-                    avatar: '👤',
-                    avatarType: 'emoji',
-                    avatarColor: '#9370db'
-                };
-                
-                alert('注册成功！已自动登录');
-            } else {
-                // 模拟登录成功
-                currentUser = {
-                    email: email,
-                    name: email.split('@')[0],
-                    avatar: '👤',
-                    avatarType: 'emoji',
-                    avatarColor: '#9370db'
-                };
-                
-                alert('登录成功！');
-            }
-            
-            // 更新用户状态
-            updateUserInterface();
-            saveUserState();
-            
-            closeModals();
-            authForm.reset();
-        }
-
-        // 更改用户名
-        function handleUsernameChange(e) {
-            e.preventDefault();
-            
-            const newUsername = document.getElementById('new-username').value;
-            
-            if (!newUsername) {
-                alert('请输入新用户名');
-                return;
-            }
-            
-            currentUser.name = newUsername;
-            
-            updateUserInterface();
-            saveUserState();
-            
-            alert('用户名修改成功！');
-            closeModals();
-            usernameForm.reset();
-        }
-
-        // 打开用户名修改模态框
-        function openUsernameModal() {
-            usernameModal.style.display = 'flex';
-            userMenu.classList.remove('active');
-        }
-
-        // 打开头像修改模态框
-        function openAvatarModal() {
-            avatarModal.style.display = 'flex';
-            userMenu.classList.remove('active');
-        }
-
-        // 上传自定义头像
-        function handleAvatarUpload() {
-            const file = avatarUpload.files[0];
-            if (!file) {
-                alert('请选择要上传的图片');
-                return;
-            }
-            
-            if (!file.type.match('image.*')) {
-                alert('请选择图片文件');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                if (currentUser) {
-                    currentUser.avatar = e.target.result;
-                    currentUser.avatarType = 'image';
-                    updateUserInterface();
-                    saveUserState();
-                    alert('头像上传成功！');
-                    avatarModal.style.display = 'none';
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // 退出登录
-        function handleLogout() {
-            currentUser = null;
-            saveUserState();
-            updateUserInterface();
-            alert('已退出登录');
-            userMenu.classList.remove('active');
-        }
-
-        // 处理投稿提交
-        async function handleSubmission(e) {
-            e.preventDefault();
-            
-            if (!currentUser) {
-                alert('请先登录再投稿！');
-                openAuthModal();
-                return;
-            }
             
             const title = document.getElementById('title').value;
-            const category = document.getElementById('category').value;
+            const author = document.getElementById('author').value;
             const content = document.getElementById('content').value;
+            const contact = document.getElementById('contact').value;
             
-            // 创建新投稿
-            const newSubmission = {
-                id: Date.now(),
-                title: title,
-                category: category,
-                content: content,
-                author: currentUser.name,
-                authorEmail: currentUser.email,
-                date: new Date().toLocaleDateString()
-            };
+            // 在实际应用中，这里应该将数据发送到后端
+            // 由于我们使用GitHub Pages，可以借助GitHub Issues作为简单的数据存储
+            alert(`感谢您的投稿！\n标题：${title}\n作者：${author}\n我们已收到您的作品，将在审核后展示。`);
             
-            // 显示加载状态
-            const submitButton = submissionForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提交中...';
-            submitButton.disabled = true;
+            // 清空表单
+            document.getElementById('submissionForm').reset();
+        });
+        
+        // 角色卡片交互效果
+        const characters = document.querySelectorAll('.character');
+        characters.forEach(character => {
+            character.addEventListener('mouseenter', function() {
+                characters.forEach(c => {
+                    if (c !== this) {
+                        c.style.transform = 'scale(0.95)';
+                    }
+                });
+            });
             
-            try {
-                // 添加到投稿数组
-                submissions.unshift(newSubmission);
-                
-                // 保存投稿到GitHub
-                const success = await saveDataToGitHub(SUBMISSIONS_FILE_PATH, submissions);
-                
-                if (success) {
-                    // 同时更新本地存储作为备份
-                    localStorage.setItem('submissions', JSON.stringify(submissions));
-                    
-                    // 重新渲染投稿内容
-                    renderSubmissions();
-                    
-                    successModal.style.display = 'flex';
-                    submissionForm.reset();
-                    
-                    // 显示成功消息
-                    showMessage('投稿已成功提交到GitHub！', 'success');
-                } else {
-                    alert('投稿提交失败，请稍后重试');
-                }
-            } catch (error) {
-                console.error('投稿提交失败:', error);
-                alert('投稿提交失败，请稍后重试');
-            } finally {
-                // 恢复按钮状态
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
-        }
-
-        // 处理点赞
-        function handleLike() {
-            if (!currentUser) {
-                alert('请先登录再点赞！');
-                openAuthModal();
-                return;
-            }
-            
-            const likeIcon = this.querySelector('i');
-            const likeCount = this.querySelector('.like-count');
-            
-            likeIcon.classList.remove('far');
-            likeIcon.classList.add('fas', 'liked');
-            
-            // 增加点赞数
-            likeCount.textContent = parseInt(likeCount.textContent) + 1;
-            
-            // 防止重复点击
-            this.style.pointerEvents = 'none';
-            setTimeout(() => {
-                this.style.pointerEvents = 'auto';
-            }, 1000);
-        }
-
-        // 点赞演示按钮
-        function handleLikeDemo() {
-            if (!currentUser) {
-                alert('请先登录再点赞！');
-                openAuthModal();
-                return;
-            }
-            
-            alert('点赞功能演示 - 您已登录，可以正常点赞！');
-        }
-
-        // 滚动到联系区域
-        function scrollToContact() {
-            document.querySelector('.feedback-container').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // 用户菜单显示/隐藏
-        function toggleUserMenu() {
-            if (currentUser) {
-                userMenu.classList.toggle('active');
-            }
-        }
+            character.addEventListener('mouseleave', function() {
+                characters.forEach(c => {
+                    if (c.classList.contains('sunquan')) {
+                        c.style.transform = 'rotate(-5deg)';
+                    } else if (c.classList.contains('lan')) {
+                        c.style.transform = 'rotate(5deg)';
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
 
