@@ -497,7 +497,49 @@
             
             // 在实际应用中，这里应该将数据发送到后端
             // 由于我们使用GitHub Pages，可以借助GitHub Issues作为简单的数据存储
-            alert(`感谢您的投稿！\n标题：${title}\n作者：${author}\n我们已收到您的作品，将在审核后展示。`);
+            document.getElementById('submissionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const content = document.getElementById('content').value;
+    const contact = document.getElementById('contact').value || '无';
+
+    // 构造 Issue 内容
+    const issueBody = `
+    作者：${author}
+    联系方式：${contact}
+    作品内容：
+    ${content}
+    `;
+
+    // 调用 GitHub API 提交 Issue（需替换为你的仓库信息和令牌）
+    fetch('https://api.github.com/repos/windSeeksYou/quanlan-fansite/issues', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'token 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'
+        },
+        body: JSON.stringify({
+            title: title,
+            body: issueBody
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.id) {
+            alert('投稿成功！我们将尽快审核并展示您的作品~');
+            document.getElementById('submissionForm').reset();
+        } else {
+            alert('投稿失败，请稍后再试~');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('投稿失败，请检查网络或令牌是否有效~');
+    });
+});
+
             
             // 清空表单
             document.getElementById('submissionForm').reset();
