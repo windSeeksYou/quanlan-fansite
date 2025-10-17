@@ -275,15 +275,14 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
-            cursor: pointer;
         }
         
         .work-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
         
         .work-image {
-            height: 200px;
+            height: 150px;
             background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
@@ -308,107 +307,86 @@
             margin-bottom: 1rem;
         }
         
-        .work-excerpt {
+        .work-text {
             color: var(--light);
             font-size: 0.95rem;
             line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            white-space: pre-line;
+            max-height: 200px;
             overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s ease;
         }
         
-        .read-more {
-            margin-top: 10px;
+        .work-text.expanded {
+            max-height: none;
+        }
+        
+        .work-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(30, 35, 70, 0.9));
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .work-text.expanded::after {
+            opacity: 0;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
             color: var(--accent);
+            cursor: pointer;
             font-size: 0.9rem;
+            margin-top: 10px;
             display: flex;
             align-items: center;
+            transition: color 0.3s;
         }
         
-        .read-more i {
+        .toggle-btn:hover {
+            color: #ffab00;
+        }
+        
+        .toggle-btn i {
             margin-left: 5px;
             transition: transform 0.3s;
         }
         
-        .work-card:hover .read-more i {
-            transform: translateX(5px);
+        .toggle-btn.expanded i {
+            transform: rotate(180deg);
         }
         
-        /* 模态框样式 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: rgba(30, 35, 70, 0.95);
-            margin: 2rem auto;
-            max-width: 800px;
+        /* 暂无作品样式 */
+        .empty-work {
+            background: rgba(30, 35, 70, 0.5);
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            animation: modalFadeIn 0.3s;
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-header {
-            padding: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
         }
         
-        .modal-title {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .modal-close:hover {
-            color: var(--accent);
-        }
-        
-        .modal-body {
-            padding: 2rem;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-        
-        .modal-author {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        
-        .modal-text {
-            line-height: 1.8;
-            color: var(--light);
-        }
-        
-        .modal-text p {
+        .empty-work i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
             margin-bottom: 1rem;
+        }
+        
+        .empty-work p {
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         
         /* 页脚样式 */
@@ -463,12 +441,8 @@
                 padding: 1.5rem;
             }
             
-            .modal-content {
-                margin: 1rem;
-            }
-            
-            .modal-body {
-                padding: 1.5rem;
+            .works-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -535,21 +509,22 @@
             <h2 class="section-title">同人作品展示</h2>
             <div class="works-grid">
                 <!-- 作品1 -->
-                <div class="work-card" data-id="1">
+                <div class="work-card">
                     <div class="work-image">短篇</div>
                     <div class="work-content">
-                        <h3 class="work-title">替嫁新娘上</h3>
+                        <h3 class="work-title">替嫁新娘 上</h3>
                         <p class="work-author">作者：荔枝冰酪羹</p>
-<p class="work-excerpt"><br>清晨的孙府一直以来都是最闹腾的，今天更胜以往。</br>
-<br>孙家大小姐孙尚香，这位不能按常理推断的世家小姐，正抱着府中祖宗辈石榴树的枝条哭号，“我不嫁，我心里已经有刘备了，非他不可。那什劳子的澜将军，我见都没见过，不嫁不嫁不嫁。”孙家长子孙策想靠近又不敢靠近，一边哄树上的妹妹，一边暗示旁边的作壁上观的弟弟帮忙，“好好好，不嫁就不嫁。你先下来好不好，要是摔着了可不值当。”
-<br>二公子孙权抱胸而立，静静地看着孙尚香扒在树上哭嚎半天也不见眼泪，冷冷道：“你今天要是真的能从树上跳下来死这，我就带着你的尸体去和皇上退婚。”</br>
-二人眼神对峙半晌，自觉认输的孙大小姐悻悻然从树上翻身而下，轻盈落地。</br>
-<br>看的孙大少爷头上的筋一跳一跳，恨不得逮着人揍一顿，又对着自家小妹委委屈屈的脸心软了。尚香年纪轻，又有心上人，一时接受不了被赐婚给未见过的男子也是可以理解的。孙策忍了又忍，最后把手搭在小妹肩上微微发力，不让人溜走，“尚香，不和兄长解释一下你和刘家公子的事吗？”
-只听孙大小姐声音洪亮，字正腔圆的说：“我和刘备两情相悦，这辈子非他不嫁了。”</br>
-<br>一句话成功让孙权火气上涌，“什么时候的事？姓刘的小子哪点值得你这么想嫁。”说到“姓刘的小子”时，手上捏着的折扇发出细微的声响。</br>
-<br>这点动静落到孙尚香耳中，这位大小姐顿时一颤，完了完了，刘备不会被二哥一巴掌扇死吧，我还没嫁过去就要守寡了，不对应该是冥婚。孙大小姐瞬息间在脑海中勾勒完一套热销话本，还没来得及细化就被匆匆跑来的下人打断了</br>
-<br>小厮穿过院门，面上是略显骄傲的喜悦，“大公子，二公子，三小姐，将军府送来了聘礼，64抬，在院子里放着呢。”孙尚香立马泪眼婆娑的看向孙策，孙策的视线瞥向孙权，兄妹二人达成了一些不太美妙的共识。只见孙三小姐一个滑跪抱住孙二公子的小腿，哭号：“二哥，我真的不嫁。你要真让我嫁，我就...”女孩从头上取下一只金簪，作势对着自己的脖颈，“我就死在这。”孙权看着妹妹脸上挂着的泪痕（掐出来的），最终还是心软了。</br>
-诺大的孙府，只有三位年轻的嫡系。其中大公子已在上个月完婚，迎娶桥家的大小姐大乔，是一对令人艳羡神仙眷侣，二公子尚未订下婚约，三小姐刚被指婚。这会算来算去也只有孙权这一个单身的青年才俊。经过激烈争斗，孙二公子被哥哥和妹妹联手绑上了花轿。</br>
+                        <div class="work-text" id="work-text-1">
+清晨的孙府一直以来都是最闹腾的，今天更胜以往。
+孙家大小姐孙尚香，这位不能按常理推断的世家小姐，正抱着府中祖宗辈石榴树的枝条哭号，“我不嫁，我心里已经有刘备了，非他不可。那什劳子的澜将军，我见都没见过，不嫁不嫁不嫁。”孙家长子孙策想靠近又不敢靠近，一边哄树上的妹妹，一边暗示旁边的作壁上观的弟弟帮忙，“好好好，不嫁就不嫁。你先下来好不好，要是摔着了可不值当。”
+二公子孙权抱胸而立，静静地看着孙尚香扒在树上哭嚎半天也不见眼泪，冷冷道：“你今天要是真的能从树上跳下来死这，我就带着你的尸体去和皇上退婚。”
+二人眼神对峙半晌，自觉认输的孙大小姐悻悻然从树上翻身而下，轻盈落地。
+看的孙大少爷头上的筋一跳一跳，恨不得逮着人揍一顿，又对着自家小妹委委屈屈的脸心软了。尚香年纪轻，又有心上人，一时接受不了被赐婚给未见过的男子也是可以理解的。孙策忍了又忍，最后把手搭在小妹肩上微微发力，不让人溜走，“尚香，不和兄长解释一下你和刘家公子的事吗？”
+只听孙大小姐声音洪亮，字正腔圆的说：“我和刘备两情相悦，这辈子非他不嫁了。”
+一句话成功让孙权火气上涌，“什么时候的事？姓刘的小子哪点值得你这么想嫁。”说到“姓刘的小子”时，手上捏着的折扇发出细微的声响。
+这点动静落到孙尚香耳中，这位大小姐顿时一颤，完了完了，刘备不会被二哥一巴掌扇死吧，我还没嫁过去就要守寡了，不对应该是冥婚。孙大小姐瞬息间在脑海中勾勒完一套热销话本，还没来得及细化就被匆匆跑来的下人打断了。
+小厮穿过院门，面上是略显骄傲的喜悦，“大公子，二公子，三小姐，将军府送来了聘礼，64抬，在院子里放着呢。”孙尚香立马泪眼婆娑的看向孙策，孙策的视线瞥向孙权，兄妹二人达成了一些不太美妙的共识。只见孙三小姐一个滑跪抱住孙二公子的小腿，哭号：“二哥，我真的不嫁。你要真让我嫁，我就...”女孩从头上取下一只金簪，作势对着自己的脖颈，“我就死在这。”孙权看着妹妹脸上挂着的泪痕（掐出来的），最终还是心软了。
+诺大的孙府，只有三位年轻的嫡系。其中大公子已在上个月完婚，迎娶桥家的大小姐大乔，是一对令人艳羡神仙眷侣，二公子尚未订下婚约，三小姐刚被指婚。这会算来算去也只有孙权这一个单身的青年才俊。经过激烈争斗，孙二公子被哥哥和妹妹联手绑上了花轿。
 待孙权反应过来时自己已经坐在驶向将军府的队伍中了，他悄悄掀开轿子的窗帘一角，环顾四周，看着迎亲队伍，有些无力的跌回座椅上。“这出的什么馊主意，小妹胡闹就算了，怎么大哥大嫂还有义兄也跟着胡闹啊。”看着身上火红的嫁衣，孙二公子长叹一口气，陷入沉思。
 将军府此时也鸡飞狗跳的。由于澜将军常年在外征战，府中事务大多由小姐蔡文姬打理，而两人都较为年幼，许多事都要靠从二人幼时便照顾二人起居的老管家帮衬。老管家年事已高，总担心事情没做好，有纰漏，一件事要反反复复检查三四遍，老人家精力又不够充沛，更多时候只能让蔡文姬自己手忙脚乱的处理，好在澜没什么对于仪式的观念，对蔡文姬的奇思妙想照单全收，在两小只的努力下府中成功被打点成喜气洋洋的样子。
 看着装点上囍字的婚房，澜这位少年将军后知后觉感到有几分羞涩，要迎接一位女主人进将军府的念头终于在少年的心上有了实感，连被身边人打趣一生都与情爱无缘的澜也忍不住在心里勾勒起未来妻子的形象。要是她如京中传言一般是位不输男子的豪杰，或许他们可以一同切磋，将军府的院子够大，她在这里舞刀弄剑也不会束手束脚。就是院子里没有什么名贵的花草，希望她不会嫌弃这里的简陋。少年没经历过多少刻骨铭心的挫折，战场上也没有感怀悲秋的时间，在等待新娘子到来前却让少年将军陷入难得的深思。
@@ -564,18 +539,23 @@
 这场表面上其乐融融的婚礼就这么稀里糊涂的成了。
 直到被送入洞房，孙权才不得不面对最严峻的一个问题，如何跟澜将军说明他的新娘子怎么从一位女性变成了一位男性，人家脾气再好也不可能容忍妻子被偷天换日成一个男人吧。
 然而这位澜将军属实有点出孙权意料，他站在自己新婚妻子前，却连盖头都没掀。澜从小锦囊里抽出蔡文姬提前为他写好的小抄，期期艾艾的开口：“我今晚先打地铺，新婚第一天就分房睡传出去对你的名声不好。还有那个，我们可以先假装一段时间的夫妻吗，我妹妹很希望我可以找到爱人，我不想让她失望。”这些当然不是蔡文姬准备好的词，是澜自己做主加上的，他实在不愿意耽误一位姑娘，尤其是他刚刚才打听到这位姑娘或许不是很乐意嫁给自己。
-孙权终于坐不住了，他的良心（如果还有的话）不足以支撑他全程沉默着让这位善良过头的小将军自己一个人承受一切，尤其这个责任有很大一部分是自家小妹的。他起身拉住小将军的手，引着人掀开自己的盖头，看着人呆愣的眼神，无奈的开口：“抱歉澜将军，小妹不懂事，有了心上人不愿意嫁，我这个做哥哥的不但没能制止还加以纵容。如果澜将军接受，在下愿意赔上自己，将这一生都交由将军定夺。”</p>
-                        <div class="read-more">全文同上 <i class="fas fa-arrow-right"></i></div>
+孙权终于坐不住了，他的良心（如果还有的话）不足以支撑他全程沉默着让这位善良过头的小将军自己一个人承受一切，尤其这个责任有很大一部分是自家小妹的。他起身拉住小将军的手，引着人掀开自己的盖头，看着人呆愣的眼神，无奈的开口：“抱歉澜将军，小妹不懂事，有了心上人不愿意嫁，我这个做哥哥的不但没能制止还加以纵容。如果澜将军接受，在下愿意赔上自己，将这一生都交由将军定夺。”
+
+                        </div>
+                        <button class="toggle-btn" data-target="work-text-1">
+                            展开全文 <i class="fas fa-chevron-down"></i>
+                        </button>
                     </div>
                 </div>
                 
                 <!-- 作品2 -->
-                <div class="work-card" data-id="2">
+                <div class="work-card">
                     <div class="work-image">短篇</div>
                     <div class="work-content">
                         <h3 class="work-title">种田糙汉</h3>
                         <p class="work-author">作者：荔枝冰酪羹</p>
-                        <p class="work-excerpt">俗话说， 世界上最危险的几种职业师尊、师兄，还有种田汉子的媳妇。为了不当种田汉子的媳妇，澜从小就有一个梦想，拥有一块自己的田地，种各种各样的花花草草和蔬菜。可惜世事无常，他最后当了一名刺客。每次割开敌人的喉咙，看着血从刀口喷发，他都会想起那个坐在田地里和妹妹畅想未来的夜晚。月光下，两个小小的身影依偎在一起，谁都想不到后来会分开，人生扭曲成血块。
+                        <div class="work-text" id="work-text-2">
+俗话说， 世界上最危险的几种职业师尊、师兄，还有种田汉子的媳妇。为了不当种田汉子的媳妇，澜从小就有一个梦想，拥有一块自己的田地，种各种各样的花花草草和蔬菜。可惜世事无常，他最后当了一名刺客。每次割开敌人的喉咙，看着血从刀口喷发，他都会想起那个坐在田地里和妹妹畅想未来的夜晚。月光下，两个小小的身影依偎在一起，谁都想不到后来会分开，人生扭曲成血块。
 脱离刺客身份的契机来的很巧。
 那天他刺杀失败，顺着江水一路飘到孙家村，被村长的长子救起，醒来便看见那位少年。他一手撑在桌上以拳抵额，一手翻动膝间的书。少年很敏锐，澜刚睁眼不久就被察觉了，他没急着说话，顾及澜昏迷不醒许久的情况，取了块干净的棉布将水轻轻沾到澜的唇上，那里并不因主人的长期昏迷而干枯开裂。
 尽管头还昏沉，眼还迷蒙，澜却执着的想要看清少年的脸，直瞪瞪的眼睛大而空茫。于是少年笑了，带着些许无奈，将语速放的缓慢“这里是孙家村，我叫孙权，救你回来的是我的大哥孙策。你不用怕，这里很安全，我不会伤害你。”
@@ -594,20 +574,23 @@
 孙权从屋子出来想找澜，一出门便看见澜在院子门口站着，身边放着两个大篮子，他的小鲨鱼正从篮子里把最后几颗白菜递给面前的老婆婆。那一瞬间疑惑、不解、还有一点委屈，几种感情全涌上孙权心头。待老婆婆走后，他快步上前攥住澜的手腕，拉着人走到屋檐下，冷声道：“为什么全送出去了，明明是你那么辛苦种的，而且我连一颗都没有，你就那么讨厌我吗？”说到最后澜甚至听出些委屈之意。
 鲨鱼不解，鲨鱼叹气，“你不是不喜欢吗？每次看菜园都咬牙切齿的，我都怕你牙咬坏了，我以后不种白菜，种你喜欢的好不好，我们不要冷战了。”澜看着孙权，眼睛像初见时那般，直勾勾的盯着他，比天上的星星还亮。“我喜欢鲨鱼，澜也给我种吗？”孙权故意问他，如愿看到他的鲨鱼微微皱眉，很苦恼的样子。
 “没有其他的鲨鱼了，只有我这一条，你不可以养其他的鱼了，鲨鱼是很霸道的，不喜欢和别的鱼一起生活。”澜像是下了某种决心，眼一闭心一横，撞上孙权的唇，乔姐说这是喜欢，而且孙权是胆小鬼，所以自己要主动一点，这样应该够主动了吧。孙权马上明白了背后肯定是自家大嫂出的力，很快回过神揽住澜撬开对方的唇，夺回主动权，“没关系，我只会养一条鱼，一条叫澜的小鲨鱼。”
-后来澜明白一件事，那就是孙权钓鱼，从不空军。</p>
+后来澜明白一件事，那就是孙权钓鱼，从不空军。
 
-                        <div class="read-more"> <i class="fas fa-arrow-right"></i></div>
+                        </div>
+                        <button class="toggle-btn" data-target="work-text-2">
+                            展开全文 <i class="fas fa-chevron-down"></i>
+                        </button>
                     </div>
                 </div>
                 
                 <!-- 作品3 -->
-                <div class="work-card" data-id="3">
+                <div class="work-card">
                     <div class="work-image">短篇</div>
                     <div class="work-content">
                         <h3 class="work-title">权的观察日记2</h3>
                         <p class="work-author">作者：萌念竹</p>
-                        <p class="work-excerpt">【月满潮生|权澜中秋18h企划】14：00 权的观
-察日记2
+                        <div class="work-text" id="work-text-3">
+【月满潮生|权澜中秋18h企划】14：00 权的观察日记2
 
 上一棒@荔枝冰酪羹
 下一棒@萌念竹
@@ -633,40 +616,33 @@
 不推还好，一推澜就感受到这个床跟工作时睡的床一模一样，肩臀软腰腿硬。平时睡习惯的床此刻分外磨人。“换个地方…这个床不舒服……”“嗯？”孙权跟没听懂似的，“平时不都睡这个床吗？有什么不舒服的，还能减轻肌腱劳损呢。”他跪在澜身上，手伸向澜的腰带。
 澜的腿被孙权抬起，摸到澜腿间的湿滑，孙权笑了。“看来澜副机长很有经验？”澜没有回答。
 这种事情，以前为曹操卖命时他就略有耳闻，只是没想到如今做这种事的主角竟变成了自己。他别过脸去。“澜副机长这么有经验，自己动一下试试？”澜没有再动，孙权在他身上动了起来，偶尔擦过敏感点的时候，澜会轻哼一声，其余时间都在忍耐。若不是越来越大的喘息声真让人怀疑这人是不是睡着了。
-完事已经半夜，孙权将头埋在澜的胸口，也没拔出来，两人就这样睡了一夜。</p>
-                        <div class="read-more">全文见上<i class="fas fa-arrow-right"></i></div>
+完事已经半夜，孙权将头埋在澜的胸口，也没拔出来，两人就这样睡了一夜。
+                        </div>
+                        <button class="toggle-btn" data-target="work-text-3">
+                            展开全文 <i class="fas fa-chevron-down"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- 作品4 -->
-                <div class="work-card" data-id="4">
-                    <div class="work-image">暂无</div>
-                    <div class="work-content">
-                        <h3 class="work-title">xxxx</h3>
-                        <p class="work-author">作者：xxx</p>
-                        <p class="work-excerpt"></p>
-                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
-                    </div>
+                <!-- 暂无作品 -->
+                <div class="empty-work">
+                    <i class="fas fa-book-open"></i>
+                    <p>暂无更多作品</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">期待您的投稿</p>
                 </div>
-
-                <!-- 作品5 -->
-                <div class="work-card" data-id="5">
-                    <div class="work-image">短篇</div>
-                    <div class="work-content">
-                        <h3 class="work-title">xxx</h3>
-                        <p class="work-author">作者：xxxx</p>
-                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
-                    </div>
+                
+                <!-- 暂无作品 -->
+                <div class="empty-work">
+                    <i class="fas fa-pen-nib"></i>
+                    <p>暂无更多作品</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">期待您的投稿</p>
                 </div>
-
-                <!-- 作品6 -->
-                <div class="work-card" data-id="6">
-                    <div class="work-image">xx</div>
-                    <div class="work-content">
-                        <h3 class="work-title">vvvv</h3>
-                        <p class="work-author">作者：xxx</p>
-                        <div class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></div>
-                    </div>
+                
+                <!-- 暂无作品 -->
+                <div class="empty-work">
+                    <i class="fas fa-paint-brush"></i>
+                    <p>暂无更多作品</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">期待您的投稿</p>
                 </div>
             </div>
         </div>
@@ -681,10 +657,11 @@
                 <li><a href="#">版权声明</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
-            <p>© 2025 王者荣耀孙权x澜同人站 | 本网站为粉丝创作，与官方无关</p>
+            <p>© 2023 王者荣耀孙权x澜同人站 | 本网站为粉丝创作，与官方无关</p>
         </div>
     </footer>
 
+    <script>
         // 角色卡片交互效果
         const characters = document.querySelectorAll('.character');
         characters.forEach(character => {
@@ -721,52 +698,23 @@
             });
         });
 
-        // 模态框功能
-        const modal = document.getElementById('workModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalAuthor = document.getElementById('modalAuthor');
-        const modalText = document.getElementById('modalText');
-        const modalClose = document.getElementById('modalClose');
-
-        // 点击作品卡片打开模态框
-        document.querySelectorAll('.work-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const workId = this.getAttribute('data-id');
-                const work = worksData[workId];
+        // 展开/收起功能
+        document.querySelectorAll('.toggle-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const textElement = document.getElementById(targetId);
                 
-                if (work) {
-                    modalTitle.textContent = work.title;
-                    modalAuthor.textContent = `作者：${work.author} | 类型：${work.type}`;
-                    modalText.innerHTML = work.content;
-                    modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
+                if (textElement.classList.contains('expanded')) {
+                    textElement.classList.remove('expanded');
+                    this.innerHTML = '展开全文 <i class="fas fa-chevron-down"></i>';
+                    this.classList.remove('expanded');
+                } else {
+                    textElement.classList.add('expanded');
+                    this.innerHTML = '收起全文 <i class="fas fa-chevron-up"></i>';
+                    this.classList.add('expanded');
                 }
             });
-        });
-
-        // 关闭模态框
-        modalClose.addEventListener('click', function() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        // 点击模态框外部关闭
-        window.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // ESC键关闭模态框
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
         });
     </script>
 </body>
 </html>
-
-
